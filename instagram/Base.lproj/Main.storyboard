@@ -42,8 +42,15 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngr-B4-gPB">
-                                <rect key="frame" x="273" y="415" width="55" height="30"/>
+                                <rect key="frame" x="273" y="395" width="55" height="30"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpButton:" destination="cau-gP-UGz" eventType="touchUpInside" id="bUE-2a-8BJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSd-me-hVk">
+                                <rect key="frame" x="212" y="435" width="175" height="30"/>
+                                <state key="normal" title="I already have an account"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,10 +58,17 @@
                             <constraint firstItem="Ngr-B4-gPB" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="3Kj-hB-9kh"/>
                             <constraint firstItem="cqX-6S-oJp" firstAttribute="centerY" secondItem="5TW-Fk-SUC" secondAttribute="centerY" id="3hq-Qw-Q2h"/>
                             <constraint firstItem="cqX-6S-oJp" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="99u-T2-5yJ"/>
-                            <constraint firstItem="Ngr-B4-gPB" firstAttribute="top" secondItem="cqX-6S-oJp" secondAttribute="bottom" constant="40" id="kI4-QE-exg"/>
+                            <constraint firstItem="WSd-me-hVk" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="RP4-Mb-l72"/>
+                            <constraint firstItem="Ngr-B4-gPB" firstAttribute="top" secondItem="cqX-6S-oJp" secondAttribute="bottom" constant="20" id="kI4-QE-exg"/>
+                            <constraint firstItem="WSd-me-hVk" firstAttribute="top" secondItem="Ngr-B4-gPB" secondAttribute="bottom" constant="10" id="uGE-eK-haG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="13p-X8-Zve"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="7cM-LK-o1f" id="QUS-Tb-jeO"/>
+                        <outlet property="passwordTextField" destination="vgn-Sl-36J" id="MdQ-ls-Fem"/>
+                        <outlet property="usernameTextField" destination="WZM-PI-ZYg" id="jle-u9-kHG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7m-Y4-GW9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
