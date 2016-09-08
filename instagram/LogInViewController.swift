@@ -47,6 +47,11 @@ class LogInViewController: UIViewController {
         })
     }
 
+    @IBAction func backToSignUp(sender: UIButton) {
+        
+        self.dismissViewControllerAnimated(true, completion: {});
+        
+    }
 }
 
 
