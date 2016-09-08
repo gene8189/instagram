@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // launch this lines of codes when the apps is launch! so sign up view wouldnt load the user already signed up
         FIRApp.configure()
         
         //google stuff
@@ -31,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // if this key exists in userDefault
         if let _ = NSUserDefaults.standardUserDefaults().objectForKey("userUID") as? String{
             //load storyboard
-            let storyBoard = UIStoryboard(name:"FeedStoryboard", bundle: NSBundle.mainBundle())
+            let storyBoard = UIStoryboard(name:"HomeStoryboard", bundle: NSBundle.mainBundle())
             // load view controller with the storyboardID of HomeTabBarController
             let tabBarController = storyBoard.instantiateViewControllerWithIdentifier("FeedTabBarController")
             
@@ -69,8 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 let userDict = ["username": username, "email": email]
                 
                 currentUserRef.setValue(userDict)
-                
-                let storyBoard = UIStoryboard(name:"FeedStoryboard", bundle:NSBundle.mainBundle())
+        
+                let storyBoard = UIStoryboard(name:"HomeStoryboard", bundle:NSBundle.mainBundle())
                 
                 //load viewcontroller with the storyboardID of HomeTabBarController
                 let tabBarController = storyBoard.instantiateViewControllerWithIdentifier("FeedTabBarController")

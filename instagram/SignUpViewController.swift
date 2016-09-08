@@ -68,7 +68,7 @@ class SignUpViewController: UIViewController,  GIDSignInUIDelegate,FBSDKLoginBut
             if let user=user {
                 NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: "userUID")
                 self.performSegueWithIdentifier("HomeSegue", sender: nil)
-                let storyBoard = UIStoryboard(name:"FeedStoryboard", bundle:NSBundle.mainBundle())
+                let storyBoard = UIStoryboard(name:"HomeStoryboard", bundle:NSBundle.mainBundle())
                 
                 //load viewcontroller with the storyboardID of HomeTabBarController
                 let tabBarController = storyBoard.instantiateViewControllerWithIdentifier("FeedTabBarController")

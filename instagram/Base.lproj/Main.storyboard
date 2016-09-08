@@ -8,7 +8,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="UWB-xC-nWQ">
             <objects>
-                <viewController id="cau-gP-UGz" customClass="SignUpViewController" customModule="instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="cau-gP-UGz" customClass="SignUpViewController" customModule="instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TWO-30-hIY"/>
                         <viewControllerLayoutGuide type="bottom" id="PJP-Ve-TtE"/>
@@ -153,7 +153,7 @@
                                 <rect key="frame" x="277" y="365" width="47" height="30"/>
                                 <state key="normal" title="Sign In"/>
                                 <connections>
-                                    <action selector="signInButton:" destination="cfz-os-Lf9" eventType="touchUpInside" id="M0u-yU-4Kv"/>
+                                    <action selector="onLoginButtonPressed:" destination="cfz-os-Lf9" eventType="touchUpInside" id="KHA-yS-CXa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM9-MF-fg5">

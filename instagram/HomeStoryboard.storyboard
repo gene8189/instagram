@@ -16,10 +16,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="xpV-Eo-m9R" kind="relationship" relationship="viewControllers" id="AOz-Cz-zJO"/>
-                        <segue destination="bdg-ef-MeY" kind="relationship" relationship="viewControllers" id="zMV-LE-zWS"/>
-                        <segue destination="zYf-9t-evI" kind="relationship" relationship="viewControllers" id="Wdx-6F-0JA"/>
-                        <segue destination="HeA-GC-xQW" kind="relationship" relationship="viewControllers" id="VnH-nU-Xot"/>
-                        <segue destination="LCX-XR-GaH" kind="relationship" relationship="viewControllers" id="CXy-sK-dWg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0pX-ZV-F7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -29,52 +25,12 @@
         <!--FeedStoryboard-->
         <scene sceneID="J9u-UP-JWx">
             <objects>
-                <viewControllerPlaceholder storyboardName="FeedStoryboard" id="xpV-Eo-m9R" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="FeedTabBarController" storyboardName="FeedStoryboard" id="xpV-Eo-m9R" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Feed" id="h2s-kc-mDd"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQd-gK-47P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2994" y="191"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="OqK-CV-Lrp">
-            <objects>
-                <viewControllerPlaceholder id="bdg-ef-MeY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="r5m-TI-SIu"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VDE-pe-7fh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3006.5" y="491"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="fol-WL-mZf">
-            <objects>
-                <viewControllerPlaceholder id="zYf-9t-evI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="enG-s3-kgW"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BEF-hb-f0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3016.5" y="777"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="6sb-Z0-Esx">
-            <objects>
-                <viewControllerPlaceholder id="HeA-GC-xQW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ERj-GD-hDe"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ofi-qw-wvk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3006.5" y="333"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="ajE-kG-0fY">
-            <objects>
-                <viewControllerPlaceholder id="LCX-XR-GaH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="8gr-Up-71O"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dj6-Fb-lYm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3011.5" y="639"/>
         </scene>
     </scenes>
 </document>
