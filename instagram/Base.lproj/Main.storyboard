@@ -16,7 +16,43 @@
                     <view key="view" contentMode="scaleToFill" id="5TW-Fk-SUC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="cqX-6S-oJp">
+                                <rect key="frame" x="150" y="225" width="300" height="150"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WZM-PI-ZYg">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="45.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7cM-LK-o1f">
+                                        <rect key="frame" x="0.0" y="52" width="300" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgn-Sl-36J">
+                                        <rect key="frame" x="0.0" y="104" width="300" height="45.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Kg6-CF-n8w"/>
+                                    <constraint firstAttribute="height" constant="150" id="Oou-iS-0B7"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngr-B4-gPB">
+                                <rect key="frame" x="273" y="415" width="55" height="30"/>
+                                <state key="normal" title="Sign Up"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ngr-B4-gPB" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="3Kj-hB-9kh"/>
+                            <constraint firstItem="cqX-6S-oJp" firstAttribute="centerY" secondItem="5TW-Fk-SUC" secondAttribute="centerY" id="3hq-Qw-Q2h"/>
+                            <constraint firstItem="cqX-6S-oJp" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="99u-T2-5yJ"/>
+                            <constraint firstItem="Ngr-B4-gPB" firstAttribute="top" secondItem="cqX-6S-oJp" secondAttribute="bottom" constant="40" id="kI4-QE-exg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="13p-X8-Zve"/>
                 </viewController>
