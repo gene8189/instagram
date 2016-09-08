@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import FBSDKLoginKit
+import GoogleSignIn
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController,  GIDSignInUIDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
-
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        GIDSignIn.sharedInstance().uiDelegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {

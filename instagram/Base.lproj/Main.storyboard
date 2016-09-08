@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HZC-u9-4Vs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,17 +21,17 @@
                                 <rect key="frame" x="150" y="225" width="300" height="150"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WZM-PI-ZYg">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="45.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7cM-LK-o1f">
-                                        <rect key="frame" x="0.0" y="52" width="300" height="45"/>
+                                        <rect key="frame" x="0.0" y="53" width="300" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgn-Sl-36J">
-                                        <rect key="frame" x="0.0" y="104" width="300" height="45.5"/>
+                                        <rect key="frame" x="0.0" y="105" width="300" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -52,15 +52,29 @@
                                 <rect key="frame" x="212" y="435" width="175" height="30"/>
                                 <state key="normal" title="I already have an account"/>
                             </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6QJ-Bg-U23" customClass="GIDSignInButton">
+                                <rect key="frame" x="180" y="464" width="240" height="36"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vtW-Qq-9ph" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="180" y="508" width="240" height="36"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vtW-Qq-9ph" secondAttribute="trailing" id="2bz-3u-IgR"/>
                             <constraint firstItem="Ngr-B4-gPB" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="3Kj-hB-9kh"/>
                             <constraint firstItem="cqX-6S-oJp" firstAttribute="centerY" secondItem="5TW-Fk-SUC" secondAttribute="centerY" id="3hq-Qw-Q2h"/>
                             <constraint firstItem="cqX-6S-oJp" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="99u-T2-5yJ"/>
+                            <constraint firstAttribute="trailing" secondItem="6QJ-Bg-U23" secondAttribute="trailing" id="Iqg-BL-G0o"/>
                             <constraint firstItem="WSd-me-hVk" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="RP4-Mb-l72"/>
+                            <constraint firstItem="vtW-Qq-9ph" firstAttribute="top" secondItem="6QJ-Bg-U23" secondAttribute="bottom" constant="10" id="fc2-5E-FV6"/>
+                            <constraint firstItem="6QJ-Bg-U23" firstAttribute="top" secondItem="Ngr-B4-gPB" secondAttribute="bottom" constant="10" id="gBy-HP-l9F"/>
                             <constraint firstItem="Ngr-B4-gPB" firstAttribute="top" secondItem="cqX-6S-oJp" secondAttribute="bottom" constant="20" id="kI4-QE-exg"/>
                             <constraint firstItem="WSd-me-hVk" firstAttribute="top" secondItem="Ngr-B4-gPB" secondAttribute="bottom" constant="10" id="uGE-eK-haG"/>
+                            <constraint firstItem="vtW-Qq-9ph" firstAttribute="leading" secondItem="5TW-Fk-SUC" secondAttribute="leading" id="uTs-VQ-RgK"/>
+                            <constraint firstItem="6QJ-Bg-U23" firstAttribute="leading" secondItem="5TW-Fk-SUC" secondAttribute="leading" id="v8U-g3-1TV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="13p-X8-Zve"/>

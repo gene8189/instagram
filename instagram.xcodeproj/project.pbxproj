@@ -15,6 +15,10 @@
 		4F19B3661D810AF20003AB18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F19B3641D810AF20003AB18 /* LaunchScreen.storyboard */; };
 		4F19B36E1D810B0C0003AB18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F19B36D1D810B0C0003AB18 /* GoogleService-Info.plist */; };
 		4F94CC241D81179400E3552B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F94CC231D81179400E3552B /* Login.storyboard */; };
+		4F94CC291D81209600E3552B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F94CC251D81209600E3552B /* Bolts.framework */; };
+		4F94CC2A1D81209600E3552B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F94CC261D81209600E3552B /* FBSDKCoreKit.framework */; };
+		4F94CC2B1D81209600E3552B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F94CC271D81209600E3552B /* FBSDKLoginKit.framework */; };
+		4F94CC2C1D81209600E3552B /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F94CC281D81209600E3552B /* FBSDKShareKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		4F19B3671D810AF20003AB18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F19B36D1D810B0C0003AB18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F94CC231D81179400E3552B /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		4F94CC251D81209600E3552B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		4F94CC261D81209600E3552B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		4F94CC271D81209600E3552B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		4F94CC281D81209600E3552B /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		545A5940877E03E97C072C2F /* Pods_instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63FDCFC39020A0D911011EDE /* Pods-instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-instagram/Pods-instagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +46,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E952C7BE79DDD97994454EC /* Pods_instagram.framework in Frameworks */,
+				4F94CC2A1D81209600E3552B /* FBSDKCoreKit.framework in Frameworks */,
+				4F94CC2C1D81209600E3552B /* FBSDKShareKit.framework in Frameworks */,
+				4F94CC2B1D81209600E3552B /* FBSDKLoginKit.framework in Frameworks */,
+				4F94CC291D81209600E3552B /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +59,10 @@
 		1198B346C9F59FAB89F172C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F94CC251D81209600E3552B /* Bolts.framework */,
+				4F94CC261D81209600E3552B /* FBSDKCoreKit.framework */,
+				4F94CC271D81209600E3552B /* FBSDKLoginKit.framework */,
+				4F94CC281D81209600E3552B /* FBSDKShareKit.framework */,
 				545A5940877E03E97C072C2F /* Pods_instagram.framework */,
 			);
 			name = Frameworks;
@@ -335,6 +351,10 @@
 			baseConfigurationReference = 0C34285DEE5ADC6BF603B7B7 /* Pods-instagram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = instagram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = genecoding.instagram;
@@ -347,6 +367,10 @@
 			baseConfigurationReference = 63FDCFC39020A0D911011EDE /* Pods-instagram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = instagram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = genecoding.instagram;
