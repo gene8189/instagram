@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController  {
     @IBOutlet weak var usernameTextField: UITextField!
 
     @IBOutlet weak var emailTextField: UITextField!
@@ -27,6 +29,35 @@ class SignUpViewController: UIViewController {
 
 
     @IBAction func signUpButton(sender: UIButton) {
+        
+        guard
+            let username = usernameTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text  else{
+                
+                return
+        }
+        
+        FIRAuth.auth()?.createUserWithEmail(email, password: password, completion: {(user, error) in
+            if let user = user{
+                NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: "userUID")
+                
+                //sign up succes
+                //(segue to next view)
+                
+                let firebaseRef = FIRDatabase.database().reference()
+                let currentUserRef = firebaseRef.child("users").child(user.uid)
+                let userDict = ["email":email, "username":username]
+                currentUserRef.setValue(userDict)
+            }else{
+                //failed
+                let alert = UIAlertController(title: "Sign Up Fail", message: error?.localizedDescription, preferredStyle: . Alert )
+                let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
+                alert.addAction(dismissAction)
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        })
+
     }
     
     //////tESTING//

@@ -15,6 +15,7 @@
 		4F19B3661D810AF20003AB18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F19B3641D810AF20003AB18 /* LaunchScreen.storyboard */; };
 		4F19B36E1D810B0C0003AB18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F19B36D1D810B0C0003AB18 /* GoogleService-Info.plist */; };
 		4F94CC241D81179400E3552B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F94CC231D81179400E3552B /* Login.storyboard */; };
+		53D8EF441D812F5300B26BC0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8EF431D812F5300B26BC0 /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		4F19B3671D810AF20003AB18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F19B36D1D810B0C0003AB18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F94CC231D81179400E3552B /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		53D8EF431D812F5300B26BC0 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		545A5940877E03E97C072C2F /* Pods_instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63FDCFC39020A0D911011EDE /* Pods-instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-instagram/Pods-instagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +79,7 @@
 				4F19B35D1D810AF20003AB18 /* SignUpViewController.swift */,
 				4F19B35F1D810AF20003AB18 /* Main.storyboard */,
 				4F94CC231D81179400E3552B /* Login.storyboard */,
+				53D8EF431D812F5300B26BC0 /* LogInViewController.swift */,
 				4F19B3621D810AF20003AB18 /* Assets.xcassets */,
 				4F19B3641D810AF20003AB18 /* LaunchScreen.storyboard */,
 				4F19B36D1D810B0C0003AB18 /* GoogleService-Info.plist */,
@@ -220,6 +223,7 @@
 			files = (
 				4F19B35E1D810AF20003AB18 /* SignUpViewController.swift in Sources */,
 				4F19B35C1D810AF20003AB18 /* AppDelegate.swift in Sources */,
+				53D8EF441D812F5300B26BC0 /* LogInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

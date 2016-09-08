@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HZC-u9-4Vs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -51,6 +51,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSd-me-hVk">
                                 <rect key="frame" x="212" y="435" width="175" height="30"/>
                                 <state key="normal" title="I already have an account"/>
+                                <connections>
+                                    <segue destination="tMA-Oa-Xfj" kind="presentation" id="nCo-aJ-BCp"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,6 +76,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7m-Y4-GW9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1434" y="-376"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="D8N-X5-3zu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="tMA-Oa-Xfj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AV8-vT-R3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1485.5" y="114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="avI-as-OxX">
