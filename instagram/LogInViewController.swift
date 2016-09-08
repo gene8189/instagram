@@ -25,7 +25,8 @@ class LogInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func signInButton(sender: UIButton) {
+    
+    @IBAction func onLoginButtonPressed(sender: AnyObject) {
         guard
             let email = emailTextField.text,
             let password = passwordTextField.text
@@ -34,9 +35,10 @@ class LogInViewController: UIViewController {
         FIRAuth.auth()?.signInWithEmail(email, password: password, completion:  { (user, error) in
             if let user = user {
                 NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: "userUID")
-                print("sign in succesful")
-                //(segue to next view)
-                //succesfully sign in
+                self.performSegueWithIdentifier("HomeSegue", sender: nil)
+                
+                               
+            
             }else{
                 //failed sign in
                 let alert = UIAlertController (title: "Sign In Failed", message: error?.localizedDescription, preferredStyle: .Alert)

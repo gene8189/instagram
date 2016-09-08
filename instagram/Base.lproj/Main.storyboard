@@ -8,7 +8,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="UWB-xC-nWQ">
             <objects>
-                <viewController id="cau-gP-UGz" customClass="SignUpViewController" customModule="instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="cau-gP-UGz" customClass="SignUpViewController" customModule="instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TWO-30-hIY"/>
                         <viewControllerLayoutGuide type="bottom" id="PJP-Ve-TtE"/>
@@ -25,12 +25,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7cM-LK-o1f">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7cM-LK-o1f">
                                         <rect key="frame" x="0.0" y="54" width="300" height="38"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgn-Sl-36J">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgn-Sl-36J">
                                         <rect key="frame" x="0.0" y="107" width="300" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -55,15 +55,29 @@
                                     <segue destination="cfz-os-Lf9" kind="presentation" id="1z2-bo-WZe"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Z5-BO-UOo" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="179" y="464" width="240" height="24"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1L0-jV-ibC" customClass="GIDSignInButton">
+                                <rect key="frame" x="180" y="510" width="240" height="24"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ngr-B4-gPB" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="3Kj-hB-9kh"/>
                             <constraint firstItem="cqX-6S-oJp" firstAttribute="centerY" secondItem="5TW-Fk-SUC" secondAttribute="centerY" id="3hq-Qw-Q2h"/>
                             <constraint firstItem="cqX-6S-oJp" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="99u-T2-5yJ"/>
+                            <constraint firstAttribute="trailing" secondItem="9Z5-BO-UOo" secondAttribute="trailing" id="IGA-BK-4RR"/>
+                            <constraint firstAttribute="trailing" secondItem="1L0-jV-ibC" secondAttribute="trailing" id="Oq3-lN-EfQ"/>
                             <constraint firstItem="WSd-me-hVk" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="RP4-Mb-l72"/>
+                            <constraint firstItem="9Z5-BO-UOo" firstAttribute="top" secondItem="WSd-me-hVk" secondAttribute="bottom" constant="10" id="aRB-G1-oVh"/>
                             <constraint firstItem="Ngr-B4-gPB" firstAttribute="top" secondItem="cqX-6S-oJp" secondAttribute="bottom" constant="20" id="kI4-QE-exg"/>
+                            <constraint firstItem="1L0-jV-ibC" firstAttribute="leading" secondItem="5TW-Fk-SUC" secondAttribute="leading" id="lG8-yF-YTJ"/>
+                            <constraint firstItem="1L0-jV-ibC" firstAttribute="top" secondItem="9Z5-BO-UOo" secondAttribute="bottom" constant="10" id="txY-07-sne"/>
                             <constraint firstItem="WSd-me-hVk" firstAttribute="top" secondItem="Ngr-B4-gPB" secondAttribute="bottom" constant="10" id="uGE-eK-haG"/>
+                            <constraint firstItem="9Z5-BO-UOo" firstAttribute="leading" secondItem="5TW-Fk-SUC" secondAttribute="leading" id="x5a-wB-N0c"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="13p-X8-Zve"/>
@@ -71,7 +85,7 @@
                         <outlet property="emailTextField" destination="7cM-LK-o1f" id="QUS-Tb-jeO"/>
                         <outlet property="passwordTextField" destination="vgn-Sl-36J" id="MdQ-ls-Fem"/>
                         <outlet property="usernameTextField" destination="WZM-PI-ZYg" id="jle-u9-kHG"/>
-                        <segue destination="a4y-Qt-PC6" kind="show" id="v3q-Xe-deb"/>
+                        <segue destination="a4y-Qt-PC6" kind="presentation" identifier="HomeSegue" id="v3q-Xe-deb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7m-Y4-GW9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,7 +153,7 @@
                                 <rect key="frame" x="277" y="365" width="47" height="30"/>
                                 <state key="normal" title="Sign In"/>
                                 <connections>
-                                    <action selector="signInButton:" destination="cfz-os-Lf9" eventType="touchUpInside" id="M0u-yU-4Kv"/>
+                                    <action selector="onLoginButtonPressed:" destination="cfz-os-Lf9" eventType="touchUpInside" id="KHA-yS-CXa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM9-MF-fg5">
@@ -183,7 +197,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="yOA-F7-b88" id="zGh-ha-nOw"/>
                         <outlet property="passwordTextField" destination="Dhh-rd-cOK" id="fA0-9p-aSN"/>
-                        <segue destination="a4y-Qt-PC6" kind="show" id="qWF-Pf-3Ol"/>
+                        <segue destination="a4y-Qt-PC6" kind="presentation" identifier="HomeSegue" id="qWF-Pf-3Ol"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yqH-Gz-aDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -192,6 +206,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qWF-Pf-3Ol"/>
+        <segue reference="v3q-Xe-deb"/>
     </inferredMetricsTieBreakers>
 </document>
