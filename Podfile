@@ -6,6 +6,9 @@ target 'instagram' do
   use_frameworks!
   
   pod 'Firebase'
+  pod 'Firebase/Auth'
+  
+  
   # Pods for instagram
 
 end
