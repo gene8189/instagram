@@ -21,14 +21,15 @@ class HomeTabBarController: UITabBarController {
         cameraButton.setImage(buttonImage, forState: .Normal)
         cameraButton.center = self.tabBar.center
         cameraButton.tintColor = UIColor.whiteColor()
-        cameraButton.addTarget(self, action: "PopCamera:", forControlEvents: .TouchUpInside)
+        cameraButton.addTarget(self, action: #selector(HomeTabBarController.PopCamera(_:)), forControlEvents: .TouchUpInside)
+        cameraButton.backgroundColor = UIColor(red: 100/255.0, green: 90/255.0, blue: 140/255.0, alpha: 1.0)
         self.view.addSubview(cameraButton)
         
         
     }
     
     func PopCamera(sender: UIButton!){
-        let storyBoard = UIStoryboard(name: "HomeStoryboard", bundle: NSBundle.mainBundle())
+        let storyBoard = UIStoryboard(name: "CameraStoryboard", bundle: NSBundle.mainBundle())
         let cameraPicker = storyBoard.instantiateViewControllerWithIdentifier("CameraPopOut")
         self.presentViewController(cameraPicker, animated: true, completion: nil)
         
