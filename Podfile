@@ -9,6 +9,8 @@ target 'instagram' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Google/SignIn'
+  # pod 'MultiColorCircleView'
+
   # Pods for instagram
 
 end

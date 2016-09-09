@@ -12,17 +12,34 @@ import FirebaseDatabase
 import FBSDKLoginKit
 import GoogleSignIn
 
-class SignUpViewController: UIViewController,  GIDSignInUIDelegate,FBSDKLoginButtonDelegate  {
+class SignUpViewController: UIViewController,  GIDSignInUIDelegate, FBSDKLoginButtonDelegate  {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+     let gradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
         GIDSignIn.sharedInstance().uiDelegate = self
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.clearColor()
+        gradientLayer.frame = self.view.bounds
+        
+        let color1 = UIColor.whiteColor().CGColor as CGColorRef
+        let color2 = UIColor(red: 0.1, green: 0, blue: 0.5, alpha: 0.7).CGColor as CGColorRef
+        let color3 = UIColor(red: 0.1, green: 0.1, blue: 0.5, alpha: 0.3).CGColor as CGColorRef
+        let color4 = UIColor(white: 0.5, alpha: 0.4)
+        gradientLayer.colors = [color1, color2, color3, color4]
+        
+        gradientLayer.locations = [0.0, 0.15, 0.55, 0.7]
+        self.view.layer.addSublayer(gradientLayer)
 
     }
     
+    @IBAction func tapAction(sender: UITapGestureRecognizer) {
+        self.usernameTextField.resignFirstResponder()
+        self.emailTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+    }
 
     @IBAction func signUpButton(sender: UIButton) {
         
