@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -30,16 +30,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     }
     
-    func optionsButtonDidSelect() {
-        
-        let alert = UIAlertController(title: "Sign up Failed", message:"", preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
-        
-        alert.addAction(dismissAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-    }
     
     @IBAction func onLogoutButtonPressed(sender: AnyObject) {try! FIRAuth.auth()!.signOut()
         NSUserDefaults.standardUserDefaults().removeObjectForKey("userUID")
@@ -59,20 +49,25 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-        let header = NSBundle.mainBundle().loadNibNamed("headerVIew", owner: 0, options: nil)[0] as? UIView
-        
+        let header = NSBundle.mainBundle().loadNibNamed("headerVIew", owner: 0, options: nil)[0] as? HeaderView
+        header?.delegate = self
         print(header)
         return header
         
     }
-
     
-//    optional func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
-//        if section == 1 {
-//            
-//        }
-//    }
+    func settingsButtonTapped(button: UIButton) {
+        print("settings)")
+        let alert = UIAlertController(title: "Settings", message: "no settings yet", preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
+        alert.addAction(dismissAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
 
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
@@ -84,9 +79,18 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         } else{
             let cell = self.tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
-            
-            
             return cell
+        }
+    }
+    
+//    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0{
+            return 450
+        } else if indexPath.row == 1 {
+            return 200;
+        } else {
+            return 0
         }
     }
     
