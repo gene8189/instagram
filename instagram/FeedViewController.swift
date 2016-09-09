@@ -15,13 +15,19 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     
+//    var userIdentity : [user]()
+//    var userPicture : [user]()
+    let section = ["name 1", "name 2", "name 3"]
+    let rows = ["picture 1", "picture 2", "picture3"]
+//
+//    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+    
     }
     
     func optionsButtonDidSelect() {
@@ -44,25 +50,53 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+    ////TABLE VIEW METHODS
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return self.section.count
     }
     
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    {
+        let header = NSBundle.mainBundle().loadNibNamed("headerVIew", owner: 0, options: nil)[0] as? UIView
+        
+        print(header)
+        return header
+        
+    }
+
+    
+//    optional func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
+//        if section == 1 {
+//            
+//        }
+//    }
+
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
         
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("userCell", forIndexPath: indexPath) as! UserTableViewCell
-        cell.usernameLabel.text = "user"
-        cell.profileImageView.image = UIImage(named:"profile") ?? UIImage(named: "heart")
-        return cell
+        if indexPath.row == 0{
+            let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
+            pictureCell.pictureImageView.image = UIImage(named:"camera") ?? UIImage(named: "heart")
+            return pictureCell
         
+        } else{
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
+            
+            
+            return cell
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
-    }
-    
-    //    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    //        <#code#>
-    //    }
+//        if (section == 0) {
+//            return 2 // At the moment I have hard coded it will change it to array.count
+//        } else {
+//            return 2
+//        }
+        return 2
+        }
 }
 
