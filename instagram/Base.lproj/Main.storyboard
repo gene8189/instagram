@@ -55,43 +55,69 @@
                                     <segue destination="cfz-os-Lf9" kind="presentation" id="1z2-bo-WZe"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Z5-BO-UOo" customClass="FBSDKLoginButton">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Z5-BO-UOo" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="0.0" y="473" width="400" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="DUO-Wi-2qP"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DUO-Wi-2qP"/>
+                                    </mask>
+                                </variation>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1L0-jV-ibC" customClass="GIDSignInButton">
-                                <rect key="frame" x="125" y="511" width="150" height="24"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1L0-jV-ibC" customClass="GIDSignInButton">
+                                <rect key="frame" x="0.0" y="513" width="400" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="ARU-Bj-Hyw"/>
-                                    <constraint firstAttribute="height" constant="24" id="aKU-21-AxF"/>
+                                    <constraint firstAttribute="width" constant="400" id="ARU-Bj-Hyw"/>
+                                    <constraint firstAttribute="height" constant="30" id="aKU-21-AxF"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ARU-Bj-Hyw"/>
+                                        <exclude reference="aKU-21-AxF"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1L0-jV-ibC" secondAttribute="trailing" id="2WO-QQ-qMY"/>
                             <constraint firstItem="Ngr-B4-gPB" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="3Kj-hB-9kh"/>
                             <constraint firstItem="cqX-6S-oJp" firstAttribute="centerY" secondItem="5TW-Fk-SUC" secondAttribute="centerY" id="3hq-Qw-Q2h"/>
                             <constraint firstItem="1L0-jV-ibC" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="5v8-Yk-GxB"/>
+                            <constraint firstAttribute="trailing" secondItem="1L0-jV-ibC" secondAttribute="trailing" id="7ff-hl-SPn"/>
                             <constraint firstItem="cqX-6S-oJp" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="99u-T2-5yJ"/>
+                            <constraint firstItem="9Z5-BO-UOo" firstAttribute="top" secondItem="WSd-me-hVk" secondAttribute="bottom" constant="10" id="HID-Ah-N4c"/>
                             <constraint firstAttribute="trailing" secondItem="9Z5-BO-UOo" secondAttribute="trailing" id="IGA-BK-4RR"/>
+                            <constraint firstAttribute="trailing" secondItem="9Z5-BO-UOo" secondAttribute="trailing" id="Lrd-7j-tQX"/>
                             <constraint firstAttribute="trailing" secondItem="1L0-jV-ibC" secondAttribute="trailing" id="Oq3-lN-EfQ"/>
+                            <constraint firstItem="9Z5-BO-UOo" firstAttribute="leading" secondItem="5TW-Fk-SUC" secondAttribute="leading" id="PNu-UY-ArU"/>
                             <constraint firstItem="WSd-me-hVk" firstAttribute="centerX" secondItem="5TW-Fk-SUC" secondAttribute="centerX" id="RP4-Mb-l72"/>
+                            <constraint firstItem="1L0-jV-ibC" firstAttribute="top" secondItem="9Z5-BO-UOo" secondAttribute="bottom" constant="10" id="SVR-Fn-rdK"/>
                             <constraint firstItem="9Z5-BO-UOo" firstAttribute="top" secondItem="WSd-me-hVk" secondAttribute="bottom" constant="10" id="aRB-G1-oVh"/>
+                            <constraint firstItem="1L0-jV-ibC" firstAttribute="leading" secondItem="5TW-Fk-SUC" secondAttribute="leading" id="hI8-9g-a2i"/>
                             <constraint firstItem="Ngr-B4-gPB" firstAttribute="top" secondItem="cqX-6S-oJp" secondAttribute="bottom" constant="20" id="kI4-QE-exg"/>
                             <constraint firstItem="1L0-jV-ibC" firstAttribute="leading" secondItem="5TW-Fk-SUC" secondAttribute="leading" id="lG8-yF-YTJ"/>
                             <constraint firstItem="1L0-jV-ibC" firstAttribute="top" secondItem="9Z5-BO-UOo" secondAttribute="bottom" constant="10" id="txY-07-sne"/>
                             <constraint firstItem="WSd-me-hVk" firstAttribute="top" secondItem="Ngr-B4-gPB" secondAttribute="bottom" constant="10" id="uGE-eK-haG"/>
+                            <constraint firstItem="1L0-jV-ibC" firstAttribute="leading" secondItem="5TW-Fk-SUC" secondAttribute="leading" id="vfD-3k-JXl"/>
                             <constraint firstItem="9Z5-BO-UOo" firstAttribute="leading" secondItem="5TW-Fk-SUC" secondAttribute="leading" id="x5a-wB-N0c"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="IGA-BK-4RR"/>
+                                <exclude reference="aRB-G1-oVh"/>
+                                <exclude reference="x5a-wB-N0c"/>
+                                <exclude reference="5v8-Yk-GxB"/>
+                                <exclude reference="7ff-hl-SPn"/>
                                 <exclude reference="Oq3-lN-EfQ"/>
+                                <exclude reference="hI8-9g-a2i"/>
                                 <exclude reference="lG8-yF-YTJ"/>
+                                <exclude reference="txY-07-sne"/>
                             </mask>
                         </variation>
                         <connections>
@@ -244,6 +270,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="v3q-Xe-deb"/>
+        <segue reference="qWF-Pf-3Ol"/>
     </inferredMetricsTieBreakers>
 </document>

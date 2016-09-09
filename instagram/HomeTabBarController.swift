@@ -20,6 +20,7 @@ class HomeTabBarController: UITabBarController {
         cameraButton.frame = CGRectMake(0, 0, screenWidth/CGFloat(numberOfTabs) , self.tabBar.frame.size.height)
         cameraButton.setImage(buttonImage, forState: .Normal)
         cameraButton.center = self.tabBar.center
+        cameraButton.tintColor = UIColor.whiteColor()
         cameraButton.addTarget(self, action: "PopCamera:", forControlEvents: .TouchUpInside)
         self.view.addSubview(cameraButton)
         
