@@ -32,7 +32,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         alert.addAction(dismissAction)
         
         self.presentViewController(alert, animated: true, completion: nil)
-
+        
     }
     
     @IBAction func onLogoutButtonPressed(sender: AnyObject) {try! FIRAuth.auth()!.signOut()
@@ -60,9 +60,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
- 
-//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        <#code#>
-//    }
+    
+    //    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    //        <#code#>
+    //    }
 }
 
