@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1E952C7BE79DDD97994454EC /* Pods_instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545A5940877E03E97C072C2F /* Pods_instagram.framework */; };
-		4F0B08E41D8244C0005134E2 /* FeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0B08E31D8244C0005134E2 /* FeedStoryboard.storyboard */; };
 		4F19B35C1D810AF20003AB18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F19B35B1D810AF20003AB18 /* AppDelegate.swift */; };
 		4F19B35E1D810AF20003AB18 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F19B35D1D810AF20003AB18 /* SignUpViewController.swift */; };
 		4F19B3611D810AF20003AB18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F19B35F1D810AF20003AB18 /* Main.storyboard */; };
@@ -19,6 +18,7 @@
 		4F7487591D814F09007B8941 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7487551D814F09007B8941 /* FBSDKCoreKit.framework */; };
 		4F74875A1D814F09007B8941 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7487561D814F09007B8941 /* FBSDKLoginKit.framework */; };
 		4F74875B1D814F09007B8941 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7487571D814F09007B8941 /* FBSDKShareKit.framework */; };
+		4F9C97061D82642D009E2891 /* FeedStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9C97051D82642D009E2891 /* FeedStoryBoard.storyboard */; };
 		4FA72FD31D81AD3C00AB6C1A /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA72FD21D81AD3C00AB6C1A /* HomeTabBarController.swift */; };
 		4FA72FD51D81B38A00AB6C1A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA72FD41D81B38A00AB6C1A /* CameraViewController.swift */; };
 		53B90C4F1D8135DC00FBAC2D /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53B90C4E1D8135DC00FBAC2D /* HomeStoryboard.storyboard */; };
@@ -29,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		0C34285DEE5ADC6BF603B7B7 /* Pods-instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instagram/Pods-instagram.debug.xcconfig"; sourceTree = "<group>"; };
-		4F0B08E31D8244C0005134E2 /* FeedStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FeedStoryboard.storyboard; sourceTree = "<group>"; };
 		4F19B3581D810AF20003AB18 /* instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F19B35B1D810AF20003AB18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F19B35D1D810AF20003AB18 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +41,7 @@
 		4F7487551D814F09007B8941 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4F7487561D814F09007B8941 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		4F7487571D814F09007B8941 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		4F9C97051D82642D009E2891 /* FeedStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FeedStoryBoard.storyboard; sourceTree = "<group>"; };
 		4FA72FD21D81AD3C00AB6C1A /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		4FA72FD41D81B38A00AB6C1A /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		53B90C4E1D8135DC00FBAC2D /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
@@ -109,6 +109,7 @@
 				53B90C581D817A8100FBAC2D /* Feed Controller */,
 				4F19B35F1D810AF20003AB18 /* Main.storyboard */,
 				53B90C4E1D8135DC00FBAC2D /* HomeStoryboard.storyboard */,
+				4F9C97051D82642D009E2891 /* FeedStoryBoard.storyboard */,
 				4F19B3621D810AF20003AB18 /* Assets.xcassets */,
 				4F19B3641D810AF20003AB18 /* LaunchScreen.storyboard */,
 				4F19B36D1D810B0C0003AB18 /* GoogleService-Info.plist */,
@@ -121,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				53B90C521D813CBE00FBAC2D /* FeedViewController.swift */,
-				4F0B08E31D8244C0005134E2 /* FeedStoryboard.storyboard */,
 				53B90C561D817A7400FBAC2D /* UserTableViewCell.swift */,
 			);
 			name = "Feed Controller";
@@ -200,8 +200,8 @@
 			files = (
 				4F19B36E1D810B0C0003AB18 /* GoogleService-Info.plist in Resources */,
 				4F19B3661D810AF20003AB18 /* LaunchScreen.storyboard in Resources */,
+				4F9C97061D82642D009E2891 /* FeedStoryBoard.storyboard in Resources */,
 				4F19B3631D810AF20003AB18 /* Assets.xcassets in Resources */,
-				4F0B08E41D8244C0005134E2 /* FeedStoryboard.storyboard in Resources */,
 				4F19B3611D810AF20003AB18 /* Main.storyboard in Resources */,
 				53B90C4F1D8135DC00FBAC2D /* HomeStoryboard.storyboard in Resources */,
 			);
