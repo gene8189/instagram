@@ -1,29 +1,23 @@
 //
-//  UserTableViewCell.swift
+//  SecondCellTableViewCell.swift
 //  instagram
 //
-//  Created by Keith Piong on 08/09/2016.
+//  Created by Keith Piong on 09/09/2016.
 //  Copyright © 2016 Tan Yee Gene. All rights reserved.
 //
 
 import UIKit
 
+class PictureCellTableViewCell: UITableViewCell {
 
 
-class UserTableViewCell: UITableViewCell {
- 
-
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var pictureImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    @IBAction func optionsButton(sender: AnyObject) {
-        
-    }
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
