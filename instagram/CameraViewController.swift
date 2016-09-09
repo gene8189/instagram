@@ -8,15 +8,18 @@
 
 import UIKit
 
-class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-
+class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CaptionDelegate {
+    
+    @IBOutlet var imageView: UIImageView!
+    var selectedImage: UIImage?
     @IBOutlet var photoLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.photoLabel.text = "Photo"
         
         
-}
+        
+    }
     
     @IBAction func onXButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -31,6 +34,31 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
         
         
     }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        self.selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        self.imageView.image = self.selectedImage
+        if picker.sourceType == .Camera {
+            self.photoLabel.text = "Camera"
+        }else if picker.sourceType == .PhotoLibrary {
+            self.photoLabel.text = "Library"
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destination = segue.destinationViewController as! CaptionViewController
+        destination.selectedImage = self.selectedImage
+        destination.delegate = self
+        
+        
+    }
+    func captionDelegate(controller: CaptionViewController, didFinishEditImage caption: String) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
     
     @IBAction func onTakePhotoButtonPressed(sender: AnyObject) {
         let photoPicker = UIImagePickerController()
