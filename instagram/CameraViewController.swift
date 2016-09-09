@@ -8,7 +8,11 @@
 
 import UIKit
 
-class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CaptionDelegate {
+
+    @IBOutlet var imageView: UIImageView!
+    
+      var selectedImage : UIImage?
 
     @IBOutlet var photoLabel: UILabel!
     override func viewDidLoad() {
@@ -41,6 +45,28 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
         
     }
     
+    func captionController(controller: AddCaptionViewController, didFinishWithCaption caption: String) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        self.imageView.image = selectedImage
+        if picker.sourceType == .Camera{
+            self.photoLabel.text = "PHOTO"
+        }else if picker.sourceType == .PhotoLibrary{
+            self.photoLabel.text = "LIBRARY"
+        }
+            picker.dismissViewControllerAnimated(true, completion: nil)                  
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destination = segue.destinationViewController as! AddCaptionViewController
+        destination.selectedImage = selectedImage
+        destination.delegate = self
+        
+    }
 }
