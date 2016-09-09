@@ -12,7 +12,7 @@ class CommentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var comment: UIButton!
     @IBOutlet weak var like: UIButton!
-    @IBOutlet weak var share: NSLayoutConstraint!
+    @IBOutlet weak var share: UIButton!
     
     
     override func awakeFromNib() {
