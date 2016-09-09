@@ -18,7 +18,9 @@
 		4F7487591D814F09007B8941 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7487551D814F09007B8941 /* FBSDKCoreKit.framework */; };
 		4F74875A1D814F09007B8941 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7487561D814F09007B8941 /* FBSDKLoginKit.framework */; };
 		4F74875B1D814F09007B8941 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7487571D814F09007B8941 /* FBSDKShareKit.framework */; };
-		4F9C97061D82642D009E2891 /* FeedStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9C97051D82642D009E2891 /* FeedStoryBoard.storyboard */; };
+		4F9C97061D82642D009E2891 /* FeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9C97051D82642D009E2891 /* FeedStoryboard.storyboard */; };
+		4F9C97081D82665B009E2891 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9C97071D82665B009E2891 /* ProfileStoryboard.storyboard */; };
+		4F9C970B1D8267CB009E2891 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C970A1D8267CB009E2891 /* ProfileViewController.swift */; };
 		4FA72FD31D81AD3C00AB6C1A /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA72FD21D81AD3C00AB6C1A /* HomeTabBarController.swift */; };
 		4FA72FD51D81B38A00AB6C1A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA72FD41D81B38A00AB6C1A /* CameraViewController.swift */; };
 		53B90C4F1D8135DC00FBAC2D /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53B90C4E1D8135DC00FBAC2D /* HomeStoryboard.storyboard */; };
@@ -41,7 +43,9 @@
 		4F7487551D814F09007B8941 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4F7487561D814F09007B8941 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		4F7487571D814F09007B8941 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		4F9C97051D82642D009E2891 /* FeedStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FeedStoryBoard.storyboard; sourceTree = "<group>"; };
+		4F9C97051D82642D009E2891 /* FeedStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FeedStoryboard.storyboard; sourceTree = "<group>"; };
+		4F9C97071D82665B009E2891 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
+		4F9C970A1D8267CB009E2891 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4FA72FD21D81AD3C00AB6C1A /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		4FA72FD41D81B38A00AB6C1A /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		53B90C4E1D8135DC00FBAC2D /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
@@ -102,20 +106,62 @@
 			isa = PBXGroup;
 			children = (
 				4F19B35B1D810AF20003AB18 /* AppDelegate.swift */,
-				4F19B35D1D810AF20003AB18 /* SignUpViewController.swift */,
-				53D8EF431D812F5300B26BC0 /* LogInViewController.swift */,
-				4FA72FD21D81AD3C00AB6C1A /* HomeTabBarController.swift */,
-				4FA72FD41D81B38A00AB6C1A /* CameraViewController.swift */,
+				4F9C970C1D8267D4009E2891 /* SignUpViewController */,
+				4F9C970D1D8267F6009E2891 /* Home & Camera View Controller */,
+				4F9C970E1D82680B009E2891 /* ProfileViewController */,
 				53B90C581D817A8100FBAC2D /* Feed Controller */,
+				4F9C97091D8267AB009E2891 /* Storyboards */,
+				4F9C970F1D826858009E2891 /* Models */,
+			);
+			path = instagram;
+			sourceTree = "<group>";
+		};
+		4F9C97091D8267AB009E2891 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
 				4F19B35F1D810AF20003AB18 /* Main.storyboard */,
 				53B90C4E1D8135DC00FBAC2D /* HomeStoryboard.storyboard */,
-				4F9C97051D82642D009E2891 /* FeedStoryBoard.storyboard */,
+				4F9C97051D82642D009E2891 /* FeedStoryboard.storyboard */,
+				4F9C97071D82665B009E2891 /* ProfileStoryboard.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		4F9C970C1D8267D4009E2891 /* SignUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4F19B35D1D810AF20003AB18 /* SignUpViewController.swift */,
+				53D8EF431D812F5300B26BC0 /* LogInViewController.swift */,
+			);
+			name = SignUpViewController;
+			sourceTree = "<group>";
+		};
+		4F9C970D1D8267F6009E2891 /* Home & Camera View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4FA72FD21D81AD3C00AB6C1A /* HomeTabBarController.swift */,
+				4FA72FD41D81B38A00AB6C1A /* CameraViewController.swift */,
+			);
+			name = "Home & Camera View Controller";
+			sourceTree = "<group>";
+		};
+		4F9C970E1D82680B009E2891 /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4F9C970A1D8267CB009E2891 /* ProfileViewController.swift */,
+			);
+			name = ProfileViewController;
+			sourceTree = "<group>";
+		};
+		4F9C970F1D826858009E2891 /* Models */ = {
+			isa = PBXGroup;
+			children = (
 				4F19B3621D810AF20003AB18 /* Assets.xcassets */,
 				4F19B3641D810AF20003AB18 /* LaunchScreen.storyboard */,
 				4F19B36D1D810B0C0003AB18 /* GoogleService-Info.plist */,
 				4F19B3671D810AF20003AB18 /* Info.plist */,
 			);
-			path = instagram;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		53B90C581D817A8100FBAC2D /* Feed Controller */ = {
@@ -200,7 +246,8 @@
 			files = (
 				4F19B36E1D810B0C0003AB18 /* GoogleService-Info.plist in Resources */,
 				4F19B3661D810AF20003AB18 /* LaunchScreen.storyboard in Resources */,
-				4F9C97061D82642D009E2891 /* FeedStoryBoard.storyboard in Resources */,
+				4F9C97081D82665B009E2891 /* ProfileStoryboard.storyboard in Resources */,
+				4F9C97061D82642D009E2891 /* FeedStoryboard.storyboard in Resources */,
 				4F19B3631D810AF20003AB18 /* Assets.xcassets in Resources */,
 				4F19B3611D810AF20003AB18 /* Main.storyboard in Resources */,
 				53B90C4F1D8135DC00FBAC2D /* HomeStoryboard.storyboard in Resources */,
@@ -268,6 +315,7 @@
 				53B90C531D813CBE00FBAC2D /* FeedViewController.swift in Sources */,
 				4FA72FD51D81B38A00AB6C1A /* CameraViewController.swift in Sources */,
 				53D8EF441D812F5300B26BC0 /* LogInViewController.swift in Sources */,
+				4F9C970B1D8267CB009E2891 /* ProfileViewController.swift in Sources */,
 				53B90C571D817A7400FBAC2D /* UserTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
