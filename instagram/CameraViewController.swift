@@ -7,19 +7,21 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseStorage
+import Firebase
 
 class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CaptionDelegate {
-    
+    var posts = [Post]()
+    var creator: String!
     @IBOutlet var imageView: UIImageView!
     var selectedImage: UIImage?
     @IBOutlet var photoLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.photoLabel.text = "Photo"
-        
-        
-        
     }
+    
     
     @IBAction func onXButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -53,10 +55,30 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
         
         
     }
+    
     func captionDelegate(controller: CaptionViewController, didFinishEditImage caption: String) {
         controller.dismissViewControllerAnimated(true, completion: nil)
+        guard let postImage = selectedImage else {
+            print("No Image")
+            return
+        }
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        let profilesRef = FIRDatabase.database().reference().child("profiles")
+        let usernameRef = FIRDatabase.database().reference().child("usernames").child(uid!)
+        usernameRef.observeEventType(.Value, withBlock: {(snapshot) in
+            let usernameDict = snapshot.value as? String
+            profilesRef.child(usernameDict!).observeEventType(.Value, withBlock: {(snapshot2) in
+                let profileDict = snapshot2.value
+                let creator = profileDict!["username"] as! String
+                
+        let newPost = Post.init(id: nil, creator: creator, image: postImage, caption: caption)
+        let uniquePostRef = FIRDatabase.database().reference().child("posts").childByAutoId()
+        uniquePostRef.setValue(newPost.dictValue())
         self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        })
         
+       
     }
     
     
@@ -66,6 +88,8 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
         photoPicker.sourceType = .Camera
         photoPicker.delegate = self
         self.presentViewController(photoPicker, animated: true, completion: nil)
+        
+        
         
     }
     

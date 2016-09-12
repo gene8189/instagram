@@ -14,28 +14,17 @@ import GoogleSignIn
 class LogInViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-     let gradientLayer = CAGradientLayer()
+    let gradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.clearColor()
-        gradientLayer.frame = self.view.bounds
-        
-        let color1 = UIColor.whiteColor().CGColor as CGColorRef
-        let color2 = UIColor(red: 0.1, green: 0, blue: 0.5, alpha: 0.7).CGColor as CGColorRef
-        let color3 = UIColor(red: 0.1, green: 0.1, blue: 0.5, alpha: 0.3).CGColor as CGColorRef
-        let color4 = UIColor(white: 0.5, alpha: 0.4)
-        gradientLayer.colors = [color1, color2, color3, color4]
-        
-        gradientLayer.locations = [0.0, 0.15, 0.55, 0.7]
-        self.view.layer.addSublayer(gradientLayer)
-}
+    }
     
     @IBAction func tapAction(sender: AnyObject) {
         self.emailTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
     }
-
+    
     
     @IBAction func onLoginButtonPressed(sender: AnyObject) {
         guard
@@ -44,28 +33,42 @@ class LogInViewController: UIViewController {
             else {return}
         
         FIRAuth.auth()?.signInWithEmail(email, password: password, completion:  { (user, error) in
-            if let user = user {
-                NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: "userUID")
-                self.performSegueWithIdentifier("HomeSegue", sender: nil)
+            if error != nil {
+                print(error?.localizedDescription)
+                return
                 
-                               
-            
-            }else{
-                //failed sign in
-                let alert = UIAlertController (title: "Sign In Failed", message: error?.localizedDescription, preferredStyle: .Alert)
-                let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
-                alert.addAction(dismissAction)
-                self.presentViewController(alert, animated: true, completion: nil)
+            }else {
+                let uid = user?.uid
+                FIRDatabase.database().reference().child("usernames").child(uid!).observeEventType(.Value, withBlock: { (snapshot) in
+                    guard let username = snapshot.value as? String else {
+                        print("no user found")
+                        return
+                    }
+                    FIRDatabase.database().reference().child("profiles").child(username).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                        guard let profile = snapshot.value as? [String : AnyObject] else {
+                        print("no profile found for user")
+                            return
+                        }
+                        Profile.currentUser = Profile.initWithUsername(username, profileDict: profile)
+                        let storyBoard = UIStoryboard(name:"HomeStoryboard", bundle:NSBundle.mainBundle())
+
+                        let tabBarController = storyBoard.instantiateViewControllerWithIdentifier("FeedTabBarController")
+                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
+                        appDelegate.window?.rootViewController=tabBarController
+                    })
+                })
             }
+            
         })
     }
-
+    
     @IBAction func backToSignUp(sender: UIButton) {
         
         self.dismissViewControllerAnimated(true, completion: {});
         
     }
-   }
+}
 
 
 
