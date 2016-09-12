@@ -38,30 +38,23 @@ class LogInViewController: UIViewController {
                 return
                 
             }else {
-                let uid = user?.uid
-                FIRDatabase.database().reference().child("usernames").child(uid!).observeEventType(.Value, withBlock: { (snapshot) in
-                    guard let username = snapshot.value as? String else {
-                        print("no user found")
-                        return
-                    }
-                    FIRDatabase.database().reference().child("profiles").child(username).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                        guard let profile = snapshot.value as? [String : AnyObject] else {
-                        print("no profile found for user")
-                            return
-                        }
-                        Profile.currentUser = Profile.initWithUsername(username, profileDict: profile)
+                FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
+                    if let user = user{
+                        let uid = user.uid
+                        NSUserDefaults.standardUserDefaults().setObject(uid, forKey: "userUID")
+                        
                         let storyBoard = UIStoryboard(name:"HomeStoryboard", bundle:NSBundle.mainBundle())
-
+                        
                         let tabBarController = storyBoard.instantiateViewControllerWithIdentifier("FeedTabBarController")
                         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-
+                        
                         appDelegate.window?.rootViewController=tabBarController
-                    })
-                })
+                    }
+                }
             }
-            
         })
     }
+
     
     @IBAction func backToSignUp(sender: UIButton) {
         

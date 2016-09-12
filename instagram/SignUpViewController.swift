@@ -32,14 +32,11 @@ class SignUpViewController: UIViewController,  GIDSignInUIDelegate, FBSDKLoginBu
     @IBAction func signUpButton(sender: UIButton) {
         
         guard
-            let username = usernameTextField.text,
-            let email = emailTextField.text,
-            let password = passwordTextField.text  else{
-                
-                return
+        let username = usernameTextField.text,
+        let email = emailTextField.text,
+        let password = passwordTextField.text else { return
         }
-        
-        FIRAuth.auth()?.createUserWithEmail(email, password: password, completion: {(user, error) in
+        FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
             if error != nil{
                 print(error?.localizedDescription)
                 return
@@ -57,8 +54,7 @@ class SignUpViewController: UIViewController,  GIDSignInUIDelegate, FBSDKLoginBu
                 
                 appDelegate.window?.rootViewController=tabBarController
             }
-            
-        })
+        }
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
