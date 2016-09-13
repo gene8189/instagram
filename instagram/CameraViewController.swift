@@ -63,44 +63,32 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
         }
         
         let uid = FIRAuth.auth()?.currentUser?.uid
-        let profilesRef = FIRDatabase.database().reference().child("profiles")
-        let usernameRef = FIRDatabase.database().reference().child("usernames").child(uid!)
-        usernameRef.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-            let usernameDict = snapshot.value as! String
-            profilesRef.child(usernameDict).observeSingleEventOfType(.Value, withBlock: {(snapshot2) in // observeeventoftype will produce multiples times??? WHY??
-                let profileDict = snapshot2.value
-                print(profileDict)
-                // convert image into nsdictionary
+        DataService.usernameRef.child(uid!).child("username").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            let usernameRef = snapshot.value as! String
+            print(usernameRef)
+      
+            let filePath = "\(FIRAuth.auth()!.currentUser!)/\(NSDate.timeIntervalSinceReferenceDate())"
+            let data = UIImageJPEGRepresentation(postImage, 1)
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpg"
+            FIRStorage.storage().reference().child(filePath).putData(data!, metadata: metadata) { (metadata, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                    return
+                }
+                let imageString = data!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+                let caption = caption
+                let imageData = ["image":imageString, "caption": caption, "username" : usernameRef]
                 
-                let filePath = "\(FIRAuth.auth()!.currentUser!)/\(NSDate.timeIntervalSinceReferenceDate())"
-                let data = UIImageJPEGRepresentation(postImage, 1)
-                let metadata = FIRStorageMetadata()
-                metadata.contentType = "image/jpg"
-                FIRStorage.storage().reference().child(filePath).putData(data!, metadata: metadata, completion: { (metadata, error) in
-                    if error != nil{
-                        print(error?.localizedDescription)
-                        return
-                    }
-                    let imageString = data!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-                    let newProfileDict = profilesRef.child(usernameDict).childByAutoId()
-                    let newCaption = caption
-                    let imageData = ["image": imageString, "Caption": newCaption, "username": usernameDict]
-                    newProfileDict.updateChildValues(imageData)
-                })
                 
-                //                let imageData = UIImageJPEGRepresentation(postImage, 1)
-                //                let imageString = imageData!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-                //                let image = ["Image": imageString]
-                //                newProfileDict.updateChildValues(image)
-                
-            })
-            self.dismissViewControllerAnimated(true, completion: nil)
-            
-            
-            
-        })
-        
+                let postRef = DataService.postRef.childByAutoId()
+                postRef.setValue(imageData)
+                DataService.usernameRef.child(uid!).child("posts").updateChildValues([postRef.key : true])
+            }
+          })
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     
     @IBAction func onTakePhotoButtonPressed(sender: AnyObject) {
         let photoPicker = UIImagePickerController()
@@ -113,6 +101,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
         
     }
     
-    
-    
 }
+
+
