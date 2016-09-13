@@ -25,22 +25,18 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
     }
     
     override func viewWillAppear(animated: Bool) {
-        let uid = FIRAuth.auth()?.currentUser?.uid
+        let uid = FIRAuth.auth()!.currentUser!.uid
         
         
-        DataService.usernameRef.child(uid!).child("posts").observeEventType(.ChildAdded, withBlock: {(snapshot) in
+        DataService.usernameRef.child(uid).child("posts").observeEventType(.ChildAdded, withBlock: {(snapshot) in
             let postsRef = snapshot.key
             DataService.postRef.child(postsRef).observeSingleEventOfType(.Value, withBlock: {(postsSnapshot) in
-                
-               // print(postsSnapshot)
-                if snapshot.value is NSNull{
-                   return
+                if let post = Post(snapshot: postsSnapshot){
+                    self.listOfPosts.append(post)
+                    self.collectionView.reloadData()
+                    
                 }
-                
-                let post = Post.init(snapshot: postsSnapshot)
-                self.listOfPosts.append(post!)
-                self.collectionView.reloadData()
-                
+               
             })
         })
     }
