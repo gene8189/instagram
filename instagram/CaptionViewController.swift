@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import JSQMessagesViewController
+
+
 protocol CaptionDelegate {
-   func captionDelegate(controller: CaptionViewController, didFinishEditImage caption: String)
+    func captionDelegate(controller: CaptionViewController, didFinishEditImage caption: String)
 }
 class CaptionViewController: UIViewController {
-
+    
     @IBOutlet var captionText: UITextView!
     var delegate: CaptionDelegate?
     @IBOutlet var imageView: UIImageView!
@@ -19,7 +22,7 @@ class CaptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imageView.image = selectedImage
-
+        
     }
     @IBAction func onBackButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
