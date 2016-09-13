@@ -168,7 +168,9 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="captionTextView" destination="c0u-m3-6dt" id="pIf-rL-WcX"/>
                                             <outlet property="comment" destination="kZ8-KB-hk3" id="ji8-X3-6nQ"/>
+                                            <outlet property="commentsTextView" destination="rIp-r6-0rq" id="R76-34-deu"/>
                                             <outlet property="like" destination="l5K-Me-h3o" id="YKj-Iv-wT4"/>
                                             <outlet property="share" destination="jRB-RU-iif" id="TdU-nS-abt"/>
                                         </connections>

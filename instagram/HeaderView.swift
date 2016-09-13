@@ -22,6 +22,8 @@ class HeaderView: UIView {
         self.delegate?.settingsButtonTapped(sender) //sending IBAction By Protocoling to FeedVC
         
     }
+    
+    
 
 
 }
