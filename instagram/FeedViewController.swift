@@ -94,9 +94,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if indexPath.row == 0{
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
             
-//            let decodedData = NSData(base64EncodedString: self.sectionUser[indexPath.section].image, options: NSDataBase64DecodingOptions(rawValue: 0))
-//            pictureCell.pictureImageView.image = UIImage(data:decodedData!)
-            pictureCell.pictureImageView.image = UIImage(named: "camera") ?? UIImage(named: "camera")
+           let url = NSURL(string: self.sectionUser[indexPath.section].image)
+            let data = NSData(contentsOfURL: url!)
+            pictureCell.pictureImageView.image = UIImage(data: data!) ?? UIImage(named: "camera")
             return pictureCell
         
         } else{

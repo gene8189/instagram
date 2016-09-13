@@ -79,7 +79,7 @@
                                 <rect key="frame" x="20" y="383" width="360" height="197"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXC-tD-0Si">
-                                        <rect key="frame" x="0.0" y="0.0" width="360" height="93.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="360" height="94"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="a5r-M9-fve"/>
@@ -98,7 +98,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MkB-vz-53z">
-                                        <rect key="frame" x="0.0" y="103.5" width="360" height="93.5"/>
+                                        <rect key="frame" x="0.0" y="104" width="360" height="94"/>
                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                         <state key="normal" title="Take Photo">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
