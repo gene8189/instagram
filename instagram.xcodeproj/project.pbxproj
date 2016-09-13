@@ -20,6 +20,7 @@
 		4F74875B1D814F09007B8941 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7487571D814F09007B8941 /* FBSDKShareKit.framework */; };
 		4F7CAA1F1D879CCC0094729B /* ImageCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7CAA1E1D879CCC0094729B /* ImageCellCollectionViewCell.swift */; };
 		4F7CAA211D87BD5D0094729B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7CAA201D87BD5D0094729B /* DataService.swift */; };
+		4F7CAA231D87D1430094729B /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7CAA221D87D1430094729B /* Posts.swift */; };
 		4F9C97061D82642D009E2891 /* FeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9C97051D82642D009E2891 /* FeedStoryboard.storyboard */; };
 		4F9C97081D82665B009E2891 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9C97071D82665B009E2891 /* ProfileStoryboard.storyboard */; };
 		4F9C970B1D8267CB009E2891 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C970A1D8267CB009E2891 /* ProfileViewController.swift */; };
@@ -54,6 +55,7 @@
 		4F7487571D814F09007B8941 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		4F7CAA1E1D879CCC0094729B /* ImageCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F7CAA201D87BD5D0094729B /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		4F7CAA221D87D1430094729B /* Posts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		4F9C97051D82642D009E2891 /* FeedStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FeedStoryboard.storyboard; sourceTree = "<group>"; };
 		4F9C97071D82665B009E2891 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		4F9C970A1D8267CB009E2891 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		4F9C970F1D826858009E2891 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4F7CAA221D87D1430094729B /* Posts.swift */,
 				4F7CAA201D87BD5D0094729B /* DataService.swift */,
 				536CE7671D87FBDE0064C382 /* Resource */,
 				4F19B3621D810AF20003AB18 /* Assets.xcassets */,
@@ -354,6 +357,7 @@
 				4F19B35C1D810AF20003AB18 /* AppDelegate.swift in Sources */,
 				53BF74CB1D828C18002CE5DF /* FeedPosts.swift in Sources */,
 				4FA72FD31D81AD3C00AB6C1A /* HomeTabBarController.swift in Sources */,
+				4F7CAA231D87D1430094729B /* Posts.swift in Sources */,
 				53B90C531D813CBE00FBAC2D /* FeedViewController.swift in Sources */,
 				53BF74C71D8273B0002CE5DF /* PictureCellTableViewCell.swift in Sources */,
 				4F9C971D1D82C3EB009E2891 /* CaptionViewController.swift in Sources */,
