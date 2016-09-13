@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import JSQMessagesViewController
 
 
 protocol CaptionDelegate {
@@ -34,5 +33,4 @@ class CaptionViewController: UIViewController {
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
 }

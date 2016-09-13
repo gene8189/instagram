@@ -20,20 +20,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rpC-Uj-5d5">
-                                <rect key="frame" x="0.0" y="61" width="400" height="400"/>
+                                <rect key="frame" x="0.0" y="61" width="400" height="300"/>
                                 <color key="backgroundColor" red="0.88044011779999998" green="0.88044011779999998" blue="0.88044011779999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="rpC-Uj-5d5" secondAttribute="height" multiplier="4:3" id="EK6-aa-0bm"/>
                                     <constraint firstAttribute="width" secondItem="rpC-Uj-5d5" secondAttribute="height" multiplier="1:1" id="eJB-6T-FjC"/>
                                     <constraint firstAttribute="width" secondItem="rpC-Uj-5d5" secondAttribute="height" multiplier="1:1" id="lt3-kt-FQE"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="eJB-6T-FjC"/>
+                                        <exclude reference="lt3-kt-FQE"/>
                                     </mask>
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXC-tD-0Si">
-                                <rect key="frame" x="125" y="469" width="150" height="30"/>
+                                <rect key="frame" x="125" y="369" width="150" height="30"/>
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.33725490200000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="a5r-M9-fve"/>
@@ -44,7 +46,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MkB-vz-53z">
-                                <rect key="frame" x="125" y="501" width="150" height="30"/>
+                                <rect key="frame" x="125" y="401" width="150" height="30"/>
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.33725490200000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Take Photo"/>
                                 <connections>
@@ -169,7 +171,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="fzB-uc-1KT" firstAttribute="leading" secondItem="Lkj-Kx-K95" secondAttribute="trailing" constant="8" symbolic="YES" id="272-Se-T78"/>
                                             <constraint firstItem="Lkj-Kx-K95" firstAttribute="top" secondItem="hE1-Dq-VHi" secondAttribute="topMargin" id="9Er-gg-zE4"/>
@@ -208,7 +210,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="dIr-Ro-FR3" secondAttribute="trailing" id="40q-5r-sfv"/>
                             <constraint firstItem="MAJ-Me-OEX" firstAttribute="baseline" secondItem="iWH-Oc-nos" secondAttribute="baseline" id="9ma-3E-Ra4"/>
