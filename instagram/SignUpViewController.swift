@@ -45,8 +45,8 @@ class SignUpViewController: UIViewController,  GIDSignInUIDelegate, FBSDKLoginBu
                 NSUserDefaults.standardUserDefaults().setObject(uid, forKey: "userUID")
                 
                 let firebaseRef = FIRDatabase.database().reference()
-                firebaseRef.child("usernames").child(uid).setValue(username)
-                firebaseRef.child("profiles").child(username).setValue(["username": username])
+                let username = ["username" : username]
+                firebaseRef.child("Usernames").child(uid).setValue(username)
                 let storyBoard = UIStoryboard(name:"HomeStoryboard", bundle:NSBundle.mainBundle())
                 
                 let tabBarController = storyBoard.instantiateViewControllerWithIdentifier("FeedTabBarController")
