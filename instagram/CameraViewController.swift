@@ -62,30 +62,30 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
             return
         }
         
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        DataService.usernameRef.child(uid!).child("username").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        DataService.usernameRef.child(uid).child("username").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             let usernameRef = snapshot.value as! String
             print(usernameRef)
-      
-            let filePath = "\(FIRAuth.auth()!.currentUser!)/\(NSDate.timeIntervalSinceReferenceDate())"
-            let data = UIImageJPEGRepresentation(postImage, 1)
+            
+            // sending image into storage
+            let filePath = "\(uid)"
+            let data = UIImageJPEGRepresentation(postImage, 0.5)!
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/jpg"
-            FIRStorage.storage().reference().child(filePath).putData(data!, metadata: metadata) { (metadata, error) in
+            FIRStorage.storage().reference().child(filePath).putData(data, metadata: metadata, completion: { (metadata, error) in
                 if error != nil {
                     print(error?.localizedDescription)
                     return
                 }
-                let imageString = data!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+                let fileUrl = metadata!.downloadURLs![0].absoluteString
                 let caption = caption
-                let imageData = ["image":imageString, "caption": caption, "username" : usernameRef]
-                
-                
+                let imageData = ["image":fileUrl, "caption": caption, "username" : usernameRef]
                 let postRef = DataService.postRef.childByAutoId()
                 postRef.setValue(imageData)
-                DataService.usernameRef.child(uid!).child("posts").updateChildValues([postRef.key : true])
-            }
-          })
+                DataService.usernameRef.child(uid).child("posts").updateChildValues([postRef.key : true])
+            })
+        })
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
