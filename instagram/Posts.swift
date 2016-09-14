@@ -14,12 +14,13 @@ class Post{
     var caption: String
     var username : String
     var imageUrl : String
-    var uid : String
+    var puid : String
+    var userUID : String
     
     init?(snapshot: FIRDataSnapshot){
         
         guard let dict = snapshot.value as? [String: AnyObject] else { return nil}
-        uid = snapshot.key
+        puid = snapshot.key
         
         if let dictCaption = dict["caption"] as? String{
             self.caption = dictCaption
@@ -37,6 +38,11 @@ class Post{
             
         }else {
             self.imageUrl = ""
+        }
+        if let dictUserUid = dict["userUID"] as? String {
+            self.userUID = dictUserUid
+        }else{
+            self.userUID = ""
         }
     }
 }

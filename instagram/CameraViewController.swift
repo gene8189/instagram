@@ -90,7 +90,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
                 
                 let fileUrl = metadata!.downloadURLs![0].absoluteString
                 let caption = caption
-                let imageData = ["image":fileUrl, "caption": caption, "username" : usernameRef]
+                let imageData = ["image":fileUrl, "caption": caption, "username" : usernameRef, "userUID": uid]
                 let postRef = DataService.postRef.childByAutoId()
                 postRef.setValue(imageData)
                 DataService.usernameRef.child(uid).child("posts").updateChildValues([postRef.key : true])

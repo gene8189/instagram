@@ -12,44 +12,25 @@ import FirebaseDatabase
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate{
     @IBOutlet weak var tableView: UITableView!
+    
     var sectionUser = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        let uid = FIRAuth.auth()!.currentUser!.uid
         DataService.postRef.observeEventType(.ChildAdded, withBlock: {(snapshot) in
             
             if let post = Post(snapshot: snapshot){
-                //                    let listOfPost = [Post]()
-                
                 self.sectionUser.append(post)
-                
                 print(self.sectionUser)
                 self.tableView.reloadData()
-                
-                
             }
         })
         
     }
-    
-    //
-    //        DataService.postRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {(snapshot) in
-    //
-    //            let usernameUser = snapshot.value!["username"] as! String
-    //            let captionUser = snapshot.value!["caption"] as! String
-    //
-    //            let imageUserString = snapshot.value!["image"] as! String
-    //            self.sectionUser.insert(post(username: usernameUser, caption: captionUser, image: imageUserString), atIndex: 0)
-    //            print(self.sectionUser)
-    //
-    //            self.tableView.reloadData()
-    //        })
-    //    }
-    //
     
     
     @IBAction func onLogoutButtonPressed(sender: AnyObject) {try! FIRAuth.auth()!.signOut()
@@ -73,12 +54,16 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let header = NSBundle.mainBundle().loadNibNamed("headerVIew", owner: 0, options: nil)[0] as? HeaderView
         header?.delegate = self
         header?.usernameLabel.setTitle("\(self.sectionUser[section].username)", forState: .Normal)
+        
+        let currentUid = self.sectionUser[section].userUID
+        header?.currentUid = currentUid
+        
         return header
         
     }
     
-    func profileButtonTapped(button: UIButton){
-        self.performSegueWithIdentifier("profileSegue", sender: nil )
+    func profileButtonTapped(button: UIButton, userUid: String){
+        self.performSegueWithIdentifier("profileSegue", sender: userUid )
     }
     
     func settingsButtonTapped(button: UIButton) {
@@ -101,7 +86,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if indexPath.row == 0{
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
             let dict = self.sectionUser.reverse()[indexPath.section]
-            print(dict.uid)
+            print(dict.puid)
             
             let url = NSURL(string: dict.imageUrl)
             let data = NSData(contentsOfURL: url!)
@@ -112,7 +97,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let commentCell = self.tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
             let post = self.sectionUser.reverse()[indexPath.section]
             commentCell.captionTextView.text = post.caption
-            commentCell.postUid = post.uid
+            commentCell.postUid = post.puid
             return commentCell
         }
     }
@@ -132,9 +117,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return 2
     }
     
-    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //        let destination = segue.destinationViewController as! ProfileViewController
-    //        
-    //    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            let destination = segue.destinationViewController as! ProfileViewController
+        if let userUid = sender as? String{
+            destination.userId = userUid
+        }
+        
+    }
 }
 
