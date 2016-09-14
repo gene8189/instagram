@@ -68,7 +68,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
             print(usernameRef)
             
             // sending image into storage
-            let filePath = "\(uid)"
+            let filePath = "\(uid)/\(NSDate.timeIntervalSinceReferenceDate()))"
             let data = UIImageJPEGRepresentation(postImage, 0.5)!
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/jpg"
@@ -77,6 +77,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
                     print(error?.localizedDescription)
                     return
                 }
+                
                 let fileUrl = metadata!.downloadURLs![0].absoluteString
                 let caption = caption
                 let imageData = ["image":fileUrl, "caption": caption, "username" : usernameRef]
