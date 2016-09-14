@@ -10,19 +10,18 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-struct post {
-    var username: String!
-    var caption: String!
-    var image: String!
-
-    
-}
+//struct post {
+//    var username: String!
+//    var caption: String!
+//    var image: String!
+//
+//    
+//}
 
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate{
-    
     @IBOutlet weak var tableView: UITableView!
-    var sectionUser = [post]()
+    var sectionUser = [Post]()
     
 //    let section = [Post]()
    
@@ -33,20 +32,40 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        DataService.postRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {(snapshot) in
+               let uid = FIRAuth.auth()!.currentUser!.uid
+        DataService.usernameRef.child(uid).child("posts").observeEventType(.ChildAdded, withBlock: {(snapshot) in
+        let postRef = snapshot.key
+            DataService.postRef.child(postRef).queryOrderedByKey().observeEventType(.Value, withBlock: {(snapshot2) in
             
-            let usernameUser = snapshot.value!["username"] as! String
-            let captionUser = snapshot.value!["caption"] as! String
-            
-            let imageUserString = snapshot.value!["image"] as! String
-//            let decodedData = NSData(base64EncodedString: imageUserString, options: NSDataBase64DecodingOptions(rawValue: 0))
-//            let imageUser = UIImage(data: decodedData!)
-            self.sectionUser.insert(post(username: usernameUser, caption: captionUser, image: imageUserString), atIndex: 0)
-            print(self.sectionUser)
-            
-            self.tableView.reloadData()
+                if let post = Post(snapshot: snapshot2){
+//                    let listOfPost = [Post]()
+                    
+                    self.sectionUser.append(post)
+                    
+                    print(self.sectionUser)
+                    self.tableView.reloadData()
+                    
+                    
+                }
+            })
         })
     }
+    
+        
+//        DataService.postRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {(snapshot) in
+//            
+//            let usernameUser = snapshot.value!["username"] as! String
+//            let captionUser = snapshot.value!["caption"] as! String
+//            
+//            let imageUserString = snapshot.value!["image"] as! String
+////            let decodedData = NSData(base64EncodedString: imageUserString, options: NSDataBase64DecodingOptions(rawValue: 0))
+////            let imageUser = UIImage(data: decodedData!)
+//            self.sectionUser.insert(Post.(username: usernameUser, caption: captionUser, image: imageUserString), atIndex: 0)
+//            print(self.sectionUser)
+//            
+//            self.tableView.reloadData()
+//        })
+//    }
     
 
     
@@ -93,15 +112,16 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if indexPath.row == 0{
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
-            
-           let url = NSURL(string: self.sectionUser[indexPath.section].image)
+            let dict = self.sectionUser.reverse()[indexPath.section]
+        
+           let url = NSURL(string: dict.imageUrl)
             let data = NSData(contentsOfURL: url!)
             pictureCell.pictureImageView.image = UIImage(data: data!)
             return pictureCell
         
         } else{
             let commentCell = self.tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
-            commentCell.captionTextView.text = self.sectionUser[indexPath.section].caption
+            commentCell.captionTextView.text = self.sectionUser.reverse()[indexPath.section].caption
             return commentCell
         }
     }
