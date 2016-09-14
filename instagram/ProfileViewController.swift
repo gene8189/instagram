@@ -19,8 +19,11 @@ enum ActionButtonState: String {
 }
 
 
+
 class ProfileViewController: UIViewController ,UICollectionViewDataSource,UICollectionViewDelegate{
     var listOfPosts = [Post]()
+    
+    var userId : String!
     
     @IBOutlet var actionButton: UIButton!
     
@@ -58,7 +61,8 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
 
     func loadImages() {
      
-        let uid = FIRAuth.auth()!.currentUser!.uid
+//        let uid = FIRAuth.auth()!.currentUser!.uid
+        let uid = userId
         DataService.usernameRef.child(uid).child("posts").observeEventType(.ChildAdded, withBlock: {(snapshot) in
             let postsRef = snapshot.key
             DataService.postRef.child(postsRef).observeSingleEventOfType(.Value, withBlock: {(postsSnapshot) in
