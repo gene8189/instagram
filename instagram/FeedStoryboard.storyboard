@@ -107,7 +107,7 @@
                                                         <constraint firstAttribute="height" constant="25" id="zCO-5l-F5o"/>
                                                     </constraints>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlT-ux-tZU">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlT-ux-tZU">
                                                     <rect key="frame" x="33" y="33" width="50" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="GE8-qM-tMl"/>
@@ -189,6 +189,7 @@
                                             <outlet property="comment" destination="kZ8-KB-hk3" id="ji8-X3-6nQ"/>
                                             <outlet property="commentsTextView" destination="rIp-r6-0rq" id="R76-34-deu"/>
                                             <outlet property="like" destination="l5K-Me-h3o" id="YKj-Iv-wT4"/>
+                                            <outlet property="likeLabel" destination="rlT-ux-tZU" id="J5m-Aj-mVE"/>
                                             <outlet property="share" destination="jRB-RU-iif" id="TdU-nS-abt"/>
                                         </connections>
                                     </tableViewCell>
