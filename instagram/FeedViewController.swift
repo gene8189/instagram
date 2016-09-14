@@ -10,64 +10,47 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-//struct post {
-//    var username: String!
-//    var caption: String!
-//    var image: String!
-//
-//    
-//}
-
-
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate{
     @IBOutlet weak var tableView: UITableView!
     var sectionUser = [Post]()
-    
-//    let section = [Post]()
-   
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-               let uid = FIRAuth.auth()!.currentUser!.uid
-        DataService.usernameRef.child(uid).child("posts").observeEventType(.ChildAdded, withBlock: {(snapshot) in
-        let postRef = snapshot.key
-            DataService.postRef.child(postRef).queryOrderedByKey().observeEventType(.Value, withBlock: {(snapshot2) in
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        DataService.postRef.observeEventType(.ChildAdded, withBlock: {(snapshot) in
             
-                if let post = Post(snapshot: snapshot2){
-//                    let listOfPost = [Post]()
-                    
-                    self.sectionUser.append(post)
-                    
-                    print(self.sectionUser)
-                    self.tableView.reloadData()
-                    
-                    
-                }
-            })
+            if let post = Post(snapshot: snapshot){
+                //                    let listOfPost = [Post]()
+                
+                self.sectionUser.append(post)
+                
+                print(self.sectionUser)
+                self.tableView.reloadData()
+                
+                
+            }
         })
+        
     }
     
-        
-//        DataService.postRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {(snapshot) in
-//            
-//            let usernameUser = snapshot.value!["username"] as! String
-//            let captionUser = snapshot.value!["caption"] as! String
-//            
-//            let imageUserString = snapshot.value!["image"] as! String
-////            let decodedData = NSData(base64EncodedString: imageUserString, options: NSDataBase64DecodingOptions(rawValue: 0))
-////            let imageUser = UIImage(data: decodedData!)
-//            self.sectionUser.insert(Post.(username: usernameUser, caption: captionUser, image: imageUserString), atIndex: 0)
-//            print(self.sectionUser)
-//            
-//            self.tableView.reloadData()
-//        })
-//    }
+    //
+    //        DataService.postRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {(snapshot) in
+    //
+    //            let usernameUser = snapshot.value!["username"] as! String
+    //            let captionUser = snapshot.value!["caption"] as! String
+    //
+    //            let imageUserString = snapshot.value!["image"] as! String
+    //            self.sectionUser.insert(post(username: usernameUser, caption: captionUser, image: imageUserString), atIndex: 0)
+    //            print(self.sectionUser)
+    //
+    //            self.tableView.reloadData()
+    //        })
+    //    }
+    //
     
-
     
     @IBAction func onLogoutButtonPressed(sender: AnyObject) {try! FIRAuth.auth()!.signOut()
         NSUserDefaults.standardUserDefaults().removeObjectForKey("userUID")
@@ -108,31 +91,33 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-
+    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
         
         if indexPath.row == 0{
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
             let dict = self.sectionUser.reverse()[indexPath.section]
-        
-           let url = NSURL(string: dict.imageUrl)
+            print(dict.uid)
+            
+            let url = NSURL(string: dict.imageUrl)
             let data = NSData(contentsOfURL: url!)
             pictureCell.pictureImageView.image = UIImage(data: data!)
             return pictureCell
-        
+            
         } else{
             let commentCell = self.tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
-            commentCell.captionTextView.text = self.sectionUser.reverse()[indexPath.section].caption
+            let post = self.sectionUser.reverse()[indexPath.section]
+            commentCell.captionTextView.text = post.caption
+            commentCell.postUid = post.uid
             return commentCell
         }
     }
     
-//    
+    //
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0{
             return 450
@@ -145,11 +130,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
-        }
+    }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        let destination = segue.destinationViewController as! ProfileViewController
-//        
-//    }
+    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //        let destination = segue.destinationViewController as! ProfileViewController
+    //        
+    //    }
 }
 

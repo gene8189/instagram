@@ -29,7 +29,5 @@ class HeaderView: UIView {
         
         self.delegate?.profileButtonTapped(sender)
     }
-    
-
 
 }
