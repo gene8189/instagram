@@ -55,11 +55,10 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
         self.loadImages()
     }
     
+
     func loadImages() {
-        //      navigationItem.title = profileUsername
+     
         let uid = FIRAuth.auth()!.currentUser!.uid
-        
-        
         DataService.usernameRef.child(uid).child("posts").observeEventType(.ChildAdded, withBlock: {(snapshot) in
             let postsRef = snapshot.key
             DataService.postRef.child(postsRef).observeSingleEventOfType(.Value, withBlock: {(postsSnapshot) in
@@ -69,7 +68,7 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
                     self.collectionView.reloadData()
                 }
                 
-                
+
             })
         })
     }

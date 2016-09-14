@@ -12,13 +12,23 @@ import FirebaseStorage
 import Firebase
 
 class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CaptionDelegate {
+    @IBOutlet weak var takePhotoButton: UIButton!
+    @IBOutlet weak var selectPhotoButton: UIButton!
     var creator: String!
     @IBOutlet var imageView: UIImageView!
     var selectedImage: UIImage?
     @IBOutlet var photoLabel: UILabel!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.photoLabel.text = "Photo"
+        
+        self.takePhotoButton.layer.cornerRadius = 2;
+        self.takePhotoButton.layer.borderWidth = 1;
+        self.takePhotoButton.layer.borderColor = UIColor.blackColor().CGColor
+        self.selectPhotoButton.layer.cornerRadius = 2;
+        self.selectPhotoButton.layer.borderWidth = 1;
+        self.selectPhotoButton.layer.borderColor = UIColor.blackColor().CGColor
     }
     
     

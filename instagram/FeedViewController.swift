@@ -10,26 +10,45 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+struct post {
+    var username: String!
+    var caption: String!
+    var image: String!
+
+    
+}
+
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
+    var sectionUser = [post]()
     
-//    var userIdentity : [user]()
-//    var userPicture : [user]()
-    let section = ["name 1", "name 2", "name 3"]
-    let rows = ["picture 1", "picture 2", "picture3"]
-//
-//    
-    
+//    let section = [Post]()
+   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-    
+        
+        DataService.postRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {(snapshot) in
+            
+            let usernameUser = snapshot.value!["username"] as! String
+            let captionUser = snapshot.value!["caption"] as! String
+            
+            let imageUserString = snapshot.value!["image"] as! String
+//            let decodedData = NSData(base64EncodedString: imageUserString, options: NSDataBase64DecodingOptions(rawValue: 0))
+//            let imageUser = UIImage(data: decodedData!)
+            self.sectionUser.insert(post(username: usernameUser, caption: captionUser, image: imageUserString), atIndex: 0)
+            print(self.sectionUser)
+            
+            self.tableView.reloadData()
+        })
     }
     
+
     
     @IBAction func onLogoutButtonPressed(sender: AnyObject) {try! FIRAuth.auth()!.signOut()
         NSUserDefaults.standardUserDefaults().removeObjectForKey("userUID")
@@ -43,7 +62,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     ////TABLE VIEW METHODS
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.section.count
+        return self.sectionUser.count
     }
     
     
@@ -51,7 +70,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         let header = NSBundle.mainBundle().loadNibNamed("headerVIew", owner: 0, options: nil)[0] as? HeaderView
         header?.delegate = self
-        print(header)
+        header?.usernameLabel.text = self.sectionUser[section].username
         return header
         
     }
@@ -74,12 +93,16 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if indexPath.row == 0{
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
-            pictureCell.pictureImageView.image = UIImage(named:"camera") ?? UIImage(named: "heart")
+            
+           let url = NSURL(string: self.sectionUser[indexPath.section].image)
+            let data = NSData(contentsOfURL: url!)
+            pictureCell.pictureImageView.image = UIImage(data: data!)
             return pictureCell
         
         } else{
-            let cell = self.tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
-            return cell
+            let commentCell = self.tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
+            commentCell.captionTextView.text = self.sectionUser[indexPath.section].caption
+            return commentCell
         }
     }
     
@@ -95,11 +118,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if (section == 0) {
-//            return 2 // At the moment I have hard coded it will change it to array.count
-//        } else {
-//            return 2
-//        }
         return 2
         }
 }

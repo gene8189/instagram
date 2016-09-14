@@ -13,6 +13,8 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var comment: UIButton!
     @IBOutlet weak var like: UIButton!
     @IBOutlet weak var share: UIButton!
+    @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var commentsTextView: UITextView!
     
     
     override func awakeFromNib() {
