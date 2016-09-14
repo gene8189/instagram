@@ -24,24 +24,24 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
     
     @IBOutlet var actionButton: UIButton!
     
-//    var actionButtonState: ActionButtonState = .CurrentUser {
-//        willSet(newState){
-//            switch newState {
-//            case .CurrentUser:
-//                self.actionButton.backgroundColor = UIColor.init(red: 228, green: 228, blue: 228, alpha: 1.0)
-//                actionButton.layer.borderWidth = 1.0
-//            case .NotFollowing:
-//                self.actionButton.backgroundColor = UIColor.init(red: 18, green: 86, blue: 136, alpha: 1.0)
-//                actionButton.layer.borderWidth = 1.0
-//            case .Following:
-//                self.actionButton.backgroundColor = UIColor.init(red: 111, green: 187, blue: 82, alpha: 1.0)
-//                actionButton.layer.borderWidth = 1.0
-//            }
-//            actionButton.setTitle(newState.rawValue, forState: .Normal)
-//            
-//        }
-//    }
-//    
+    //    var actionButtonState: ActionButtonState = .CurrentUser {
+    //        willSet(newState){
+    //            switch newState {
+    //            case .CurrentUser:
+    //                self.actionButton.backgroundColor = UIColor.init(red: 228, green: 228, blue: 228, alpha: 1.0)
+    //                actionButton.layer.borderWidth = 1.0
+    //            case .NotFollowing:
+    //                self.actionButton.backgroundColor = UIColor.init(red: 18, green: 86, blue: 136, alpha: 1.0)
+    //                actionButton.layer.borderWidth = 1.0
+    //            case .Following:
+    //                self.actionButton.backgroundColor = UIColor.init(red: 111, green: 187, blue: 82, alpha: 1.0)
+    //                actionButton.layer.borderWidth = 1.0
+    //            }
+    //            actionButton.setTitle(newState.rawValue, forState: .Normal)
+    //
+    //        }
+    //    }
+    //
     
     
     @IBOutlet var profileImageView: UIImageView!
@@ -52,16 +52,12 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.reloadData()
+        self.loadImages()
     }
     
-    override func viewWillAppear(animated: Bool) {
-//<<<<<<< HEAD
-//=======
-        //      navigationItem.title = profileUsername
-//        let uid = FIRAuth.auth()!.currentUser!.uid
-    
-//>>>>>>> 0c3ac7fa2b5fa26716362e2704b59f72e15614e9
-        
+
+    func loadImages() {
+     
         let uid = FIRAuth.auth()!.currentUser!.uid
         DataService.usernameRef.child(uid).child("posts").observeEventType(.ChildAdded, withBlock: {(snapshot) in
             let postsRef = snapshot.key
@@ -71,11 +67,8 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
                     self.listOfPosts.append(post)
                     self.collectionView.reloadData()
                 }
-//<<<<<<< HEAD
-//            
-//=======
-//                
-//>>>>>>> 0c3ac7fa2b5fa26716362e2704b59f72e15614e9
+                
+
             })
         })
     }
@@ -91,12 +84,8 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
         
         
         let url = NSURL(string: dict.imageUrl)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            let data = NSData(contentsOfURL: url!)
-            dispatch_async(dispatch_get_main_queue(), {
-                cell.collectionImageViewCell.image = UIImage(data: (data)!)
-            });
-        }
+        let data = NSData(contentsOfURL: url!)
+        cell.collectionImageViewCell.image = UIImage(data: (data)!)
         
         return cell
     }
