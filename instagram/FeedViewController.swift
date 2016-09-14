@@ -14,6 +14,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     
     var sectionUser = [Post]()
+    var likesArray = [Likes]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+
         DataService.postRef.observeEventType(.ChildAdded, withBlock: {(snapshot) in
             
             if let post = Post(snapshot: snapshot){
@@ -98,9 +101,32 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let post = self.sectionUser.reverse()[indexPath.section]
             commentCell.captionTextView.text = post.caption
             commentCell.postUid = post.puid
+            DataService.postRef.child(post.puid).child("UsersWhoLiked").observeEventType(.Value, withBlock: {(snapshot) in
+                if let likes = Likes(snapshot: snapshot){
+                print(likes)
+                self.likesArray.append(likes)
+                commentCell.likeLabel.text = "\(self.likesArray.count)"
+                }
+            })
             return commentCell
         }
     }
+    
+//    func likesCount(){
+//
+//        DataService.postRef.child(post.puid).child("UsersWhoLiked").observeEventType(.Value, withBlock: { (snapshot) in
+//            print(snapshot)
+//            
+//            if let likes = Likes(snapshot: snapshot){
+//                print(likes)
+//                self.likesArray.append(likes)
+//                
+//                
+//            }
+//            
+//        })
+//        
+//    }
     
     //
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
