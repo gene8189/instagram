@@ -30,15 +30,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="303.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DXx-8f-grR">
-                                                    <rect key="frame" x="8" y="8" width="384" height="287.5"/>
-                                                    <color key="backgroundColor" red="0.32666975520000002" green="0.34827515250000002" blue="0.40426682689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DXx-8f-grR">
+                                                    <rect key="frame" x="8" y="8" width="383.5" height="287.5"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="400" id="7pD-Ky-Ow1"/>
+                                                        <constraint firstAttribute="width" secondItem="DXx-8f-grR" secondAttribute="height" multiplier="4:3" id="Le1-3d-ZJz"/>
+                                                        <constraint firstAttribute="width" secondItem="DXx-8f-grR" secondAttribute="height" multiplier="4:3" id="Yhf-AK-B3Y"/>
+                                                        <constraint firstAttribute="height" constant="295.5" id="jvJ-nR-8FU"/>
                                                         <constraint firstAttribute="width" constant="384" id="qfp-ou-7kc"/>
                                                         <constraint firstAttribute="height" constant="287.5" id="qmS-6P-79s"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
+                                                            <exclude reference="7pD-Ky-Ow1"/>
+                                                            <exclude reference="Yhf-AK-B3Y"/>
+                                                            <exclude reference="jvJ-nR-8FU"/>
                                                             <exclude reference="qfp-ou-7kc"/>
                                                             <exclude reference="qmS-6P-79s"/>
                                                         </mask>
@@ -46,15 +53,22 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="DXx-8f-grR" firstAttribute="top" secondItem="eCt-5U-FML" secondAttribute="topMargin" id="6TA-0h-4wq"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="DXx-8f-grR" secondAttribute="trailing" id="Go4-0A-eaN"/>
-                                                <constraint firstItem="DXx-8f-grR" firstAttribute="leading" secondItem="eCt-5U-FML" secondAttribute="leadingMargin" id="R7A-tf-Vzv"/>
+                                                <constraint firstItem="DXx-8f-grR" firstAttribute="top" secondItem="eCt-5U-FML" secondAttribute="topMargin" id="50H-4K-O3e"/>
+                                                <constraint firstAttribute="trailing" secondItem="DXx-8f-grR" secondAttribute="trailing" id="5jv-M2-cKY"/>
+                                                <constraint firstItem="DXx-8f-grR" firstAttribute="top" secondItem="eCt-5U-FML" secondAttribute="topMargin" id="8bO-4Q-FmH"/>
+                                                <constraint firstItem="DXx-8f-grR" firstAttribute="leading" secondItem="eCt-5U-FML" secondAttribute="leading" id="FcE-QZ-gSl"/>
+                                                <constraint firstItem="DXx-8f-grR" firstAttribute="centerY" secondItem="eCt-5U-FML" secondAttribute="centerY" id="IpT-nW-BXZ"/>
+                                                <constraint firstItem="DXx-8f-grR" firstAttribute="centerX" secondItem="eCt-5U-FML" secondAttribute="centerX" id="chI-ky-xNp"/>
                                                 <constraint firstItem="DXx-8f-grR" firstAttribute="width" secondItem="eCt-5U-FML" secondAttribute="height" multiplier="128:101" id="enu-ro-F1G"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="DXx-8f-grR" secondAttribute="bottom" id="hVN-9m-2Wp"/>
+                                                <constraint firstItem="DXx-8f-grR" firstAttribute="centerY" secondItem="eCt-5U-FML" secondAttribute="centerY" id="q8N-a5-a2P"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="5jv-M2-cKY"/>
+                                                    <exclude reference="8bO-4Q-FmH"/>
+                                                    <exclude reference="FcE-QZ-gSl"/>
                                                     <exclude reference="enu-ro-F1G"/>
+                                                    <exclude reference="q8N-a5-a2P"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

@@ -157,6 +157,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="600"/>
                     <connections>
+                        <outlet property="actionButton" destination="r23-fC-KfW" id="Hmv-pU-Q96"/>
                         <outlet property="collectionView" destination="8DX-o3-NtO" id="MGc-ga-Rff"/>
                         <outlet property="profileImageView" destination="VoE-uE-ldf" id="R7j-Gm-nQb"/>
                     </connections>

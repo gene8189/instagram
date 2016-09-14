@@ -96,7 +96,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
            let url = NSURL(string: self.sectionUser[indexPath.section].image)
             let data = NSData(contentsOfURL: url!)
-            pictureCell.pictureImageView.image = UIImage(data: data!) ?? UIImage(named: "camera")
+            pictureCell.pictureImageView.image = UIImage(data: data!)
             return pictureCell
         
         } else{
