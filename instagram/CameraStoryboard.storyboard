@@ -6,6 +6,16 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Raleway-Medium.ttf">
+            <string>Raleway-Medium</string>
+        </mutableArray>
+        <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Camera View Controller-->
         <scene sceneID="sBP-PC-gtS">
@@ -20,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rpC-Uj-5d5">
-                                <rect key="frame" x="0.0" y="61" width="400" height="300"/>
+                                <rect key="frame" x="0.0" y="63" width="400" height="300"/>
                                 <color key="backgroundColor" red="0.88044011779999998" green="0.88044011779999998" blue="0.88044011779999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rpC-Uj-5d5" secondAttribute="height" multiplier="4:3" id="EK6-aa-0bm"/>
@@ -34,27 +44,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXC-tD-0Si">
-                                <rect key="frame" x="125" y="369" width="150" height="30"/>
-                                <color key="backgroundColor" red="0.070588235289999995" green="0.33725490200000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="a5r-M9-fve"/>
-                                </constraints>
-                                <state key="normal" title="Select Photo"/>
-                                <connections>
-                                    <action selector="onSelectPhotoButtonPressed:" destination="iva-BN-HDq" eventType="touchUpInside" id="weI-Q8-2pV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MkB-vz-53z">
-                                <rect key="frame" x="125" y="401" width="150" height="30"/>
-                                <color key="backgroundColor" red="0.070588235289999995" green="0.33725490200000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Take Photo"/>
-                                <connections>
-                                    <action selector="onTakePhotoButtonPressed:" destination="iva-BN-HDq" eventType="touchUpInside" id="ceX-iE-rk8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pk0-cn-d0w">
-                                <rect key="frame" x="334" y="26" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pk0-cn-d0w">
+                                <rect key="frame" x="348" y="27" width="32" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="if2-x2-0wa"/>
                                 </constraints>
@@ -69,45 +60,77 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaG-9j-eOL">
-                                <rect key="frame" x="20" y="29" width="24" height="24"/>
+                                <rect key="frame" x="20" y="29" width="24" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="X">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="onXButtonPressed:" destination="iva-BN-HDq" eventType="touchUpInside" id="v8o-k6-8Nh"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4u7-CC-bCW">
-                                <rect key="frame" x="177" y="32" width="46" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="177" y="35" width="47" height="20"/>
+                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0jw-mT-ehp">
+                                <rect key="frame" x="20" y="383" width="360" height="197"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXC-tD-0Si">
+                                        <rect key="frame" x="0.0" y="0.0" width="360" height="94"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="a5r-M9-fve"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                        <state key="normal" title="Select Photo">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="a5r-M9-fve"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="onSelectPhotoButtonPressed:" destination="iva-BN-HDq" eventType="touchUpInside" id="weI-Q8-2pV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MkB-vz-53z">
+                                        <rect key="frame" x="0.0" y="104" width="360" height="94"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                        <state key="normal" title="Take Photo">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTakePhotoButtonPressed:" destination="iva-BN-HDq" eventType="touchUpInside" id="ceX-iE-rk8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="MkB-vz-53z" firstAttribute="top" secondItem="hXC-tD-0Si" secondAttribute="bottom" constant="2" id="0JI-fF-RhI"/>
                             <constraint firstItem="4u7-CC-bCW" firstAttribute="leading" secondItem="BaG-9j-eOL" secondAttribute="trailing" constant="113" id="0cF-US-GqV"/>
                             <constraint firstItem="pk0-cn-d0w" firstAttribute="top" secondItem="UWJ-js-dOr" secondAttribute="bottom" constant="5" id="6oX-Nr-FhN"/>
                             <constraint firstItem="BaG-9j-eOL" firstAttribute="leading" secondItem="0rq-lu-crP" secondAttribute="leadingMargin" id="8vS-ec-hkF"/>
                             <constraint firstItem="BaG-9j-eOL" firstAttribute="top" secondItem="UWJ-js-dOr" secondAttribute="bottom" constant="12" id="EMK-B0-Fg1"/>
                             <constraint firstItem="BaG-9j-eOL" firstAttribute="top" secondItem="4u7-CC-bCW" secondAttribute="top" id="FW3-E5-zC6"/>
                             <constraint firstAttribute="trailing" secondItem="rpC-Uj-5d5" secondAttribute="trailing" id="KnH-P1-jmU"/>
-                            <constraint firstItem="MkB-vz-53z" firstAttribute="height" secondItem="hXC-tD-0Si" secondAttribute="height" id="MbH-yt-WDu"/>
-                            <constraint firstItem="hXC-tD-0Si" firstAttribute="leading" secondItem="MkB-vz-53z" secondAttribute="leading" id="Pdw-Ux-rHl"/>
+                            <constraint firstItem="0jw-mT-ehp" firstAttribute="leading" secondItem="0rq-lu-crP" secondAttribute="leading" constant="20" id="Qtp-2W-NJU"/>
                             <constraint firstItem="BaG-9j-eOL" firstAttribute="top" secondItem="UWJ-js-dOr" secondAttribute="bottom" constant="9" id="UXp-Gc-kfE"/>
-                            <constraint firstItem="MkB-vz-53z" firstAttribute="width" secondItem="hXC-tD-0Si" secondAttribute="width" id="VKC-qs-B4H"/>
+                            <constraint firstItem="0jw-mT-ehp" firstAttribute="top" secondItem="rpC-Uj-5d5" secondAttribute="bottom" constant="20" id="a3S-Gt-28H"/>
+                            <constraint firstAttribute="trailing" secondItem="0jw-mT-ehp" secondAttribute="trailing" constant="20" id="a6h-9g-sCf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pk0-cn-d0w" secondAttribute="trailing" constant="4" id="aeQ-L9-BKW"/>
                             <constraint firstItem="BaG-9j-eOL" firstAttribute="centerY" secondItem="pk0-cn-d0w" secondAttribute="centerY" id="fTy-1a-gTz"/>
                             <constraint firstItem="rpC-Uj-5d5" firstAttribute="top" secondItem="4u7-CC-bCW" secondAttribute="bottom" constant="8" symbolic="YES" id="h0Y-JP-ZVj"/>
                             <constraint firstItem="pk0-cn-d0w" firstAttribute="top" secondItem="UWJ-js-dOr" secondAttribute="bottom" constant="9" id="kKK-kx-Xxq"/>
                             <constraint firstItem="BaG-9j-eOL" firstAttribute="top" secondItem="UWJ-js-dOr" secondAttribute="bottom" constant="9" id="m4N-ET-QCU"/>
-                            <constraint firstItem="hXC-tD-0Si" firstAttribute="top" secondItem="rpC-Uj-5d5" secondAttribute="bottom" constant="8" symbolic="YES" id="ny5-it-M35"/>
+                            <constraint firstItem="w0m-yH-yh3" firstAttribute="top" secondItem="0jw-mT-ehp" secondAttribute="bottom" constant="20" id="qOn-T7-Pmu"/>
                             <constraint firstItem="rpC-Uj-5d5" firstAttribute="leading" secondItem="0rq-lu-crP" secondAttribute="leading" id="rLy-8R-w48"/>
                             <constraint firstItem="pk0-cn-d0w" firstAttribute="trailing" secondItem="0rq-lu-crP" secondAttribute="trailingMargin" id="s2O-ks-y4U"/>
-                            <constraint firstItem="hXC-tD-0Si" firstAttribute="centerX" secondItem="rpC-Uj-5d5" secondAttribute="centerX" id="uj8-qJ-kNK"/>
+                            <constraint firstItem="4u7-CC-bCW" firstAttribute="top" secondItem="UWJ-js-dOr" secondAttribute="bottom" constant="15" id="sav-AH-f0f"/>
                             <constraint firstItem="rpC-Uj-5d5" firstAttribute="top" secondItem="BaG-9j-eOL" secondAttribute="bottom" constant="8" symbolic="YES" id="w9B-FC-P2r"/>
                             <constraint firstItem="4u7-CC-bCW" firstAttribute="centerX" secondItem="rpC-Uj-5d5" secondAttribute="centerX" id="zkA-lj-Vxq"/>
                         </constraints>
@@ -129,6 +152,8 @@
                     <connections>
                         <outlet property="imageView" destination="rpC-Uj-5d5" id="42x-Wq-c5C"/>
                         <outlet property="photoLabel" destination="4u7-CC-bCW" id="8fc-hj-vm3"/>
+                        <outlet property="selectPhotoButton" destination="hXC-tD-0Si" id="MDs-8U-iGz"/>
+                        <outlet property="takePhotoButton" destination="MkB-vz-53z" id="vbZ-QT-nHa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xxy-l6-Wpw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -197,8 +222,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ry-SH-2lV">
-                                <rect key="frame" x="158" y="32" width="84" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="156.5" y="33" width="87" height="20"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
