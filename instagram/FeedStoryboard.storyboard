@@ -89,6 +89,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5K-Me-h3o">
                                                             <rect key="frame" x="0.0" y="0.0" width="26" height="25"/>
                                                             <state key="normal" title="heart" image="heart2"/>
+                                                            <connections>
+                                                                <action selector="likeButtonPressed:" destination="RM8-c9-q0F" eventType="touchUpInside" id="r0q-ig-JIp"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZ8-KB-hk3">
                                                             <rect key="frame" x="32" y="0.0" width="26" height="25"/>
@@ -212,11 +215,20 @@
                     <size key="freeformSize" width="400" height="600"/>
                     <connections>
                         <outlet property="tableView" destination="gHm-Nb-dd3" id="oQN-9b-j4T"/>
+                        <segue destination="f3A-0x-86O" kind="show" identifier="profileSegue" id="ItR-pl-j6m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjM-Eg-3hK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4222" y="235"/>
+            <point key="canvasLocation" x="4243" y="259"/>
+        </scene>
+        <!--ProfileStoryboard-->
+        <scene sceneID="jQH-Dm-cBD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileStoryboard" id="f3A-0x-86O" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1re-wj-m2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4612" y="121"/>
         </scene>
     </scenes>
     <resources>

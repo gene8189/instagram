@@ -10,12 +10,14 @@ import UIKit
 
 protocol HeaderViewDelegate {
     func settingsButtonTapped(button: UIButton)
+    
+    func profileButtonTapped(button: UIButton)
 }
 
 class HeaderView: UIView {
 
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UIButton!
     var delegate: HeaderViewDelegate?
     
     @IBAction func settings(sender: UIButton) {
@@ -23,6 +25,10 @@ class HeaderView: UIView {
         
     }
     
+    @IBAction func profileButton(sender: UIButton) {
+        
+        self.delegate?.profileButtonTapped(sender)
+    }
     
 
 

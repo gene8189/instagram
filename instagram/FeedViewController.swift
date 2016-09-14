@@ -70,9 +70,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         let header = NSBundle.mainBundle().loadNibNamed("headerVIew", owner: 0, options: nil)[0] as? HeaderView
         header?.delegate = self
-        header?.usernameLabel.text = self.sectionUser[section].username
+        header?.usernameLabel.setTitle("\(self.sectionUser[section].username)", forState: .Normal)
         return header
         
+    }
+    
+    func profileButtonTapped(button: UIButton){
+        self.performSegueWithIdentifier("profileSegue", sender: nil )
     }
     
     func settingsButtonTapped(button: UIButton) {
@@ -83,6 +87,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
@@ -120,5 +126,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
         }
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        let destination = segue.destinationViewController as! ProfileViewController
+//        
+//    }
 }
 
