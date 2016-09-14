@@ -53,9 +53,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         let header = NSBundle.mainBundle().loadNibNamed("headerVIew", owner: 0, options: nil)[0] as? HeaderView
         header?.delegate = self
-        header?.usernameLabel.setTitle("\(self.sectionUser[section].username)", forState: .Normal)
+        header?.usernameLabel.setTitle("\(self.sectionUser.reverse()[section].username)", forState: .Normal)
         
-        let currentUid = self.sectionUser[section].userUID
+        let currentUid = self.sectionUser.reverse()[section].userUID
         header?.currentUid = currentUid
         
         return header

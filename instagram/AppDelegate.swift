@@ -57,13 +57,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: "userUID")
                 
                 let firebaseRef = FIRDatabase.database().reference()
-                let currentUserRef = firebaseRef.child("users").child(user.uid)
+                let currentUserRef = firebaseRef.child("Usernames").child(user.uid)
                 
-                guard
-                    let username = user.displayName,
-                    let email = user.email else { return }
+                let username = user.displayName!
                 
-                let userDict = ["username": username, "email": email]
+                let userDict = ["username": username]
                 
                 currentUserRef.setValue(userDict)
                 
