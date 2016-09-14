@@ -11,11 +11,41 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
+
+enum ActionButtonState: String {
+    case CurrentUser = "Edit Profile"
+    case NotFollowing = " + Follow "
+    case Following = "✓ Following"
+}
+
+
 class ProfileViewController: UIViewController ,UICollectionViewDataSource,UICollectionViewDelegate{
     var listOfPosts = [Post]()
+    
+    @IBOutlet var actionButton: UIButton!
+    
+//    var actionButtonState: ActionButtonState = .CurrentUser {
+//        willSet(newState){
+//            switch newState {
+//            case .CurrentUser:
+//                self.actionButton.backgroundColor = UIColor.init(red: 228, green: 228, blue: 228, alpha: 1.0)
+//                actionButton.layer.borderWidth = 1.0
+//            case .NotFollowing:
+//                self.actionButton.backgroundColor = UIColor.init(red: 18, green: 86, blue: 136, alpha: 1.0)
+//                actionButton.layer.borderWidth = 1.0
+//            case .Following:
+//                self.actionButton.backgroundColor = UIColor.init(red: 111, green: 187, blue: 82, alpha: 1.0)
+//                actionButton.layer.borderWidth = 1.0
+//            }
+//            actionButton.setTitle(newState.rawValue, forState: .Normal)
+//            
+//        }
+//    }
+//    
+    
+    
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var collectionImageViewCell: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +55,7 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
     }
     
     override func viewWillAppear(animated: Bool) {
+        //      navigationItem.title = profileUsername
         let uid = FIRAuth.auth()!.currentUser!.uid
         
         
@@ -34,29 +65,30 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
                 if let post = Post(snapshot: postsSnapshot){
                     self.listOfPosts.append(post)
                     self.collectionView.reloadData()
-                    
                 }
-               
+                
             })
         })
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listOfPosts.count
+        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ImageCellCollectionViewCell
         let dict = listOfPosts[indexPath.row]
         
+        
         let url = NSURL(string: dict.imageUrl)
-        let data = NSData(contentsOfURL: url!)
-        let picture = UIImage(data: data!)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            let data = NSData(contentsOfURL: url!)
+            dispatch_async(dispatch_get_main_queue(), {
+                cell.collectionImageViewCell.image = UIImage(data: (data)!)
+            });
+        }
         
-        cell.collectionImageViewCell.image = picture
-        
-        self.collectionView.reloadData()
         return cell
     }
-
 }
