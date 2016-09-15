@@ -89,7 +89,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        delegate!.commentSent(self, text: colorLabel.text)
+//        delegate!.commentSent(self, text: colorLabel.text)
         
         if indexPath.row == 0{
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
@@ -133,12 +133,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "profileSegue"{
             let destination = segue.destinationViewController as! ProfileViewController
-        if let userUid = sender as? String{
-            destination.userId = userUid
-            }
+            if let userUid = sender as? String{
+                destination.userId = userUid
+                destination.username = self.currentUsername
         }
+        
     }
 }
 
