@@ -97,7 +97,7 @@
                                                             <rect key="frame" x="32" y="0.0" width="26" height="25"/>
                                                             <state key="normal" title="comment" image="comment"/>
                                                             <connections>
-                                                                <segue destination="MBw-uI-OhH" kind="presentation" id="guz-ZA-tSl"/>
+                                                                <action selector="commentButtonPressed:" destination="RM8-c9-q0F" eventType="touchUpInside" id="08c-5d-cDB"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRB-RU-iif">
@@ -220,6 +220,7 @@
                     <connections>
                         <outlet property="tableView" destination="gHm-Nb-dd3" id="oQN-9b-j4T"/>
                         <segue destination="f3A-0x-86O" kind="show" identifier="profileSegue" id="ItR-pl-j6m"/>
+                        <segue destination="MBw-uI-OhH" kind="presentation" identifier="commentSegue" id="FGE-h0-2vK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjM-Eg-3hK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,15 +290,15 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H8f-EQ-vYp">
                                                     <rect key="frame" x="15" y="15" width="91" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KYn-5Q-OBZ">
                                                     <rect key="frame" x="112" y="15" width="33" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -330,7 +331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JUR-3l-p6R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4250" y="947"/>
+            <point key="canvasLocation" x="4254" y="1023"/>
         </scene>
     </scenes>
     <resources>
