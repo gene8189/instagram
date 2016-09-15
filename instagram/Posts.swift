@@ -16,6 +16,7 @@ class Post{
     var imageUrl : String
     var puid : String
     var userUID : String
+   
     
     init?(snapshot: FIRDataSnapshot){
         

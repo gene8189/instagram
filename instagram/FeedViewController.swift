@@ -11,30 +11,26 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate{
+    
     @IBOutlet weak var tableView: UITableView!
     
     var sectionUser = [Post]()
     var likesArray = [Likes]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
 
         DataService.postRef.observeEventType(.ChildAdded, withBlock: {(snapshot) in
             
             if let post = Post(snapshot: snapshot){
                 self.sectionUser.append(post)
-                print(self.sectionUser)
                 self.tableView.reloadData()
             }
         })
-        
     }
-    
     
     @IBAction func onLogoutButtonPressed(sender: AnyObject) {try! FIRAuth.auth()!.signOut()
         NSUserDefaults.standardUserDefaults().removeObjectForKey("userUID")
@@ -77,9 +73,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
-    
-    
+
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
@@ -89,7 +83,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if indexPath.row == 0{
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
             let dict = self.sectionUser.reverse()[indexPath.section]
-            print(dict.puid)
             
             let url = NSURL(string: dict.imageUrl)
             let data = NSData(contentsOfURL: url!)
@@ -101,34 +94,19 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let post = self.sectionUser.reverse()[indexPath.section]
             commentCell.captionTextView.text = post.caption
             commentCell.postUid = post.puid
-            DataService.postRef.child(post.puid).child("UsersWhoLiked").observeEventType(.Value, withBlock: {(snapshot) in
-                if let likes = Likes(snapshot: snapshot){
-                print(likes)
-                self.likesArray.append(likes)
-                commentCell.likeLabel.text = "\(self.likesArray.count)"
-                }
-            })
+            
+            ///Bug Here///
+            DataService.postRef.child(post.puid).child("UsersWhoLiked").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+                            if let likes = Likes(snapshot: snapshot){
+                                print(likes)
+                                self.likesArray.append(likes)
+                                commentCell.likeLabel.text = "\(self.likesArray.count)"
+                            }
+                        })
             return commentCell
         }
     }
     
-//    func likesCount(){
-//
-//        DataService.postRef.child(post.puid).child("UsersWhoLiked").observeEventType(.Value, withBlock: { (snapshot) in
-//            print(snapshot)
-//            
-//            if let likes = Likes(snapshot: snapshot){
-//                print(likes)
-//                self.likesArray.append(likes)
-//                
-//                
-//            }
-//            
-//        })
-//        
-//    }
-    
-    //
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0{
             return 450
@@ -144,11 +122,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "profileSegue"{
             let destination = segue.destinationViewController as! ProfileViewController
         if let userUid = sender as? String{
             destination.userId = userUid
+            }
         }
-        
     }
 }
 

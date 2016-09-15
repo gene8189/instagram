@@ -15,5 +15,6 @@ struct DataService {
     static var rootRef = FIRDatabase.database().reference()
     static var usernameRef = FIRDatabase.database().reference().child("Usernames")
     static var postRef = FIRDatabase.database().reference().child("Posts")
+    static var commentRef = FIRDatabase.database().reference().child("Comments")
     
 }

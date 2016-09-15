@@ -10,8 +10,6 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-
-
 class CommentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var comment: UIButton!
@@ -21,7 +19,7 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentsTextView: UITextView!
     @IBOutlet weak var likeLabel: UILabel!
     
-    var likesArray = [String]()
+    var likesArray = [Likes]()
     var postUid: String!
     
     override func awakeFromNib() {
@@ -29,6 +27,7 @@ class CommentTableViewCell: UITableViewCell {
         // Initialization code
 
     }
+    
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -37,11 +36,9 @@ class CommentTableViewCell: UITableViewCell {
  
     }
 
-    
+        
     @IBAction func likeButtonPressed(sender: UIButton) {
         let uid = FIRAuth.auth()!.currentUser!.uid
-        print(self.postUid)
-        
         let likeRef = DataService.postRef.child(self.postUid).child("UsersWhoLiked")
         let userLiked = [uid : true]
         let photolikedRef = DataService.usernameRef.child(uid).child("PhotoLiked")
@@ -50,7 +47,5 @@ class CommentTableViewCell: UITableViewCell {
         likeRef.updateChildValues(userLiked)
         photolikedRef.updateChildValues(photoRef)
         
-        
-      
     }
 }
