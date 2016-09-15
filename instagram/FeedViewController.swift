@@ -16,6 +16,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var sectionUser = [Post]()
     var likesArray = [Likes]()
+    var currentUsername : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         header?.usernameLabel.setTitle("\(self.sectionUser.reverse()[section].username)", forState: .Normal)
         
         let currentUid = self.sectionUser.reverse()[section].userUID
+         self.currentUsername = self.sectionUser.reverse()[section].username
         header?.currentUid = currentUid
         
         return header

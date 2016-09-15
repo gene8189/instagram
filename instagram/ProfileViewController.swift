@@ -12,57 +12,74 @@ import FirebaseDatabase
 import FirebaseStorage
 
 
-enum ActionButtonState: String {
-    case CurrentUser = "Edit Profile"
-    case NotFollowing = " + Follow "
-    case Following = "✓ Following"
+enum ActionButtonState{
+    case CurrentUser
+    case NotFollowing
+    case Following
 }
 
 
 
-class ProfileViewController: UIViewController ,UICollectionViewDataSource,UICollectionViewDelegate{
+class ProfileViewController: UIViewController ,UICollectionViewDataSource,UICollectionViewDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     var listOfPosts = [Post]()
-    
     var userId : String!
+    var username: String!
     
     @IBOutlet var actionButton: UIButton!
+    var actionButtonState: ActionButtonState = .CurrentUser {
+        willSet(newState){
+            switch newState {
+            case .CurrentUser:
+                actionButton.setTitle("Edit Profile", forState: .Normal)
+            case .Following:
+                actionButton.setTitle("✓ Following", forState: .Normal)
+            case .NotFollowing:
+                actionButton.setTitle(" + Follow ", forState: .Normal)
+            }
+        }
+        
+    }
     
-    //    var actionButtonState: ActionButtonState = .CurrentUser {
-    //        willSet(newState){
-    //            switch newState {
-    //            case .CurrentUser:
-    //                self.actionButton.backgroundColor = UIColor.init(red: 228, green: 228, blue: 228, alpha: 1.0)
-    //                actionButton.layer.borderWidth = 1.0
-    //            case .NotFollowing:
-    //                self.actionButton.backgroundColor = UIColor.init(red: 18, green: 86, blue: 136, alpha: 1.0)
-    //                actionButton.layer.borderWidth = 1.0
-    //            case .Following:
-    //                self.actionButton.backgroundColor = UIColor.init(red: 111, green: 187, blue: 82, alpha: 1.0)
-    //                actionButton.layer.borderWidth = 1.0
-    //            }
-    //            actionButton.setTitle(newState.rawValue, forState: .Normal)
-    //
-    //        }
-    //    }
-    //
     
     
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var usernameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.reloadData()
-        self.loadImages()
+        self.usernameLabel.layer.borderWidth = 1
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        DataService.usernameRef.child(uid).child("following").observeEventType(.Value, withBlock: {(followingSnapshot) in
+            print("what is this :\(followingSnapshot)")
+        })
+        
+        if self.userId == nil{
+            loadCurrentUserImages()
+        }else {
+            loadUserImages()
+        }
     }
     
-
-    func loadImages() {
-     
-//        let uid = FIRAuth.auth()!.currentUser!.uid
-        let uid = userId
+    override func viewWillAppear(animated: Bool) {
+        let currentUsername = FIRAuth.auth()!.currentUser!.displayName!
+        if  self.username == nil{
+            usernameLabel.text = currentUsername
+            actionButtonState = .CurrentUser
+            
+        }else {
+            actionButtonState = .NotFollowing
+            /// write the method to set the actionbuttonstate = . not following or following
+            usernameLabel.text = username
+            print("this is segued name: \(self.username)")
+        }
+    }
+    
+    func loadUserImages(){
+        let uid = self.userId
         DataService.usernameRef.child(uid).child("posts").observeEventType(.ChildAdded, withBlock: {(snapshot) in
             let postsRef = snapshot.key
             DataService.postRef.child(postsRef).observeSingleEventOfType(.Value, withBlock: {(postsSnapshot) in
@@ -70,12 +87,118 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
                 if let post = Post(snapshot: postsSnapshot){
                     self.listOfPosts.append(post)
                     self.collectionView.reloadData()
+                    self.loadProfilePic(uid)
                 }
-                
-
             })
         })
     }
+    
+    func loadCurrentUserImages() {
+        
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        //        let uid = userId
+        DataService.usernameRef.child(uid).child("posts").observeEventType(.ChildAdded, withBlock: {(snapshot) in
+            let postsRef = snapshot.key
+            DataService.postRef.child(postsRef).observeSingleEventOfType(.Value, withBlock: {(postsSnapshot) in
+                
+                if let post = Post(snapshot: postsSnapshot){
+                    self.listOfPosts.append(post)
+                    self.collectionView.reloadData()
+                    self.loadProfilePic(uid)
+                    
+                }
+            })
+        })
+    }
+    
+    func loadProfilePic (uid: String){
+        DataService.usernameRef.child(uid).observeEventType(.Value, withBlock: {(snapshot2) in
+            
+            if let dict = snapshot2.value as? [String: AnyObject] {
+                
+                guard let picInString = dict["profilePic"] as? String else {return}
+                let url = NSURL(string: picInString)
+                
+                let data = NSData(contentsOfURL: url!)
+                
+                self.profileImageView.image = UIImage(data: data!)
+            }
+        })
+        
+        
+    }
+    
+    @IBAction func onEditButtonPressed(sender: UIButton) {
+        switch actionButtonState {
+        case .CurrentUser:
+            let actionSheet = UIAlertController(title: "Edit Profile", message: "Show more skin??", preferredStyle: .ActionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            let photoAction = UIAlertAction(title: "Edit Photo", style: .Default, handler: { action in
+                let picker = UIImagePickerController()
+                picker.allowsEditing = true
+                picker.sourceType = .PhotoLibrary
+                picker.delegate = self
+                self.presentViewController(picker, animated: true, completion: nil)
+            })
+            actionSheet.addAction(cancelAction)
+            actionSheet.addAction(photoAction)
+            self.presentViewController(actionSheet, animated: true, completion: nil)
+        case .Following:
+            actionButtonState = .NotFollowing
+            addFollowing()
+            
+        case . NotFollowing:
+            actionButtonState = .Following
+            // remove following for currentuser and user
+            
+            
+        }
+    }
+    
+    func addFollowing(){
+        
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        let following = [self.userId: true]
+        DataService.usernameRef.child(uid).child("following")
+        let currentUserProfileFollowing = DataService.usernameRef.child(uid).child("following")
+        currentUserProfileFollowing.updateChildValues(following)
+        
+        let followers = [uid: true]
+        DataService.usernameRef.child(self.userId).child("followers")
+        let userProfileFollowers = DataService.usernameRef.child(self.userId).child("followers")
+        userProfileFollowers.updateChildValues(followers)
+        actionButtonState = .Following
+        
+    }
+    
+    
+    
+    // write a function to determine if currentuser followed the user
+    
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        self.profileImageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        let filePath = "\(uid)/\(NSDate.timeIntervalSinceReferenceDate())"
+        let data = UIImageJPEGRepresentation(self.profileImageView.image!, 0.5)
+        let metadata = FIRStorageMetadata()
+        metadata.contentType = "image/jpg"
+        FIRStorage.storage().reference().child(filePath).putData(data!, metadata: metadata) { (metadata, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+                return
+            }
+            let fileUrl = metadata!.downloadURLs![0].absoluteString
+            let imageData = ["profilePic": fileUrl]
+            DataService.usernameRef.child(uid).child("profilePic")
+            let userProfilePicRef = DataService.usernameRef.child(uid)
+            userProfilePicRef.updateChildValues(imageData)
+        }
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listOfPosts.count
@@ -84,7 +207,7 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ImageCellCollectionViewCell
-        let dict = listOfPosts[indexPath.row]
+        let dict = listOfPosts.reverse()[indexPath.row]
         
         
         let url = NSURL(string: dict.imageUrl)

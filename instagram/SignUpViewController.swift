@@ -16,10 +16,12 @@ class SignUpViewController: UIViewController,  GIDSignInUIDelegate, FBSDKLoginBu
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet var fbLoginButton: FBSDKLoginButton!
     let gradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
         GIDSignIn.sharedInstance().uiDelegate = self
+        self.fbLoginButton.delegate = self
         super.viewDidLoad()
     }
     
@@ -32,9 +34,9 @@ class SignUpViewController: UIViewController,  GIDSignInUIDelegate, FBSDKLoginBu
     @IBAction func signUpButton(sender: UIButton) {
         
         guard
-        let username = usernameTextField.text,
-        let email = emailTextField.text,
-        let password = passwordTextField.text else { return
+            let username = usernameTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text else { return
         }
         FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
             if error != nil{
@@ -57,33 +59,46 @@ class SignUpViewController: UIViewController,  GIDSignInUIDelegate, FBSDKLoginBu
         }
     }
     
+    
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        
         if let error = error {
             print(error.localizedDescription)
             return
         }
+        //        if result.isCancelled{ return }
+        
         let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
-        let appDelegateTemp = UIApplication.sharedApplication().delegate!  //need to get instance of AppDelegate
         FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-            if let user=user {
+            if let user = user {
+                //successfully signed up
+                print("inside")
+                
                 NSUserDefaults.standardUserDefaults().setObject(user.uid, forKey: "userUID")
                 self.performSegueWithIdentifier("HomeSegue", sender: nil)
-                let storyBoard = UIStoryboard(name:"HomeStoryboard", bundle:NSBundle.mainBundle())
                 
-                //load viewcontroller with the storyboardID of HomeTabBarController
-                let tabBarController = storyBoard.instantiateViewControllerWithIdentifier("FeedTabBarController")
+                let firebaseRef = FIRDatabase.database().reference()
+                let currentUserRef = firebaseRef.child("Usernames").child(user.uid)
+                let userDict = ["username": user.displayName!]
+                currentUserRef.setValue(userDict)
+            } else{
+                //sign up failed
+                print("outside")
+                let alert = UIAlertController(title: "Sign up Failed", message: error?.localizedDescription, preferredStyle: .Alert)
+                let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
                 
-                appDelegateTemp.window?!.rootViewController=tabBarController
+                alert.addAction(dismissAction)
+                
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         }
+        
     }
     
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         try! FIRAuth.auth()!.signOut()
     }
-
+    
 }
 
 
