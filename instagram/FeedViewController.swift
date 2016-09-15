@@ -10,32 +10,22 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-<<<<<<< HEAD
-//protocol CommentViewDelegate {
-//
-//    func commentSent(commentTextField: UITextField)
-//
-//}
-=======
+
 protocol FeedViewControllerDelegate {
     func feedViewControllerDelegate(controller: FeedViewController, didPassUid sender: String)
     
 }
->>>>>>> 4784ca1817225cd04a587b80c8e7e000cfb4322c
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate, CommentDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
-<<<<<<< HEAD
-    //    var delegate : CommentViewDelegate
-=======
+
     var delegate : FeedViewControllerDelegate?
->>>>>>> 4784ca1817225cd04a587b80c8e7e000cfb4322c
     var sectionUser = [Post]()
     var likesArray = [Likes]()
     var currentUsername : String!
-    var dict = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -129,26 +119,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let post = self.sectionUser.reverse()[indexPath.section]
             commentCell.captionTextView.text = post.caption
             commentCell.postUid = post.puid
-<<<<<<< HEAD
+            commentCell.delegate = self
             DataService.postRef.child(post.puid).child("UsersWhoLiked").observeEventType(.Value, withBlock: {(snapshot) in
                 let numLikes = snapshot.childrenCount
-               commentCell.likeLabel.text = "\(numLikes)"
+                commentCell.likeLabel.text = "\(numLikes)"
             })
-=======
-            commentCell.delegate = self
-//            self.delegate?.feedViewControllerDelegate(self, didPassUid: post.puid)
-            print("this is post: \(commentCell.postUid)")
-            
-            
-            ///Bug Here///
-            DataService.postRef.child(post.puid).child("UsersWhoLiked").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-                            if let likes = Likes(snapshot: snapshot){
-                                print(likes)
-                                self.likesArray.append(likes)
-                                commentCell.likeLabel.text = "\(self.likesArray.count)"
-                            }
-                        })
->>>>>>> 4784ca1817225cd04a587b80c8e7e000cfb4322c
             return commentCell
         }
     }
@@ -182,31 +157,14 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-<<<<<<< HEAD
-=======
-        
->>>>>>> 4784ca1817225cd04a587b80c8e7e000cfb4322c
         if segue.identifier == "profileSegue"{
             let destination = segue.destinationViewController as! ProfileViewController
             if let userUid = sender as? String{
                 destination.userId = userUid
                 destination.username = self.currentUsername
             }
-<<<<<<< HEAD
-=======
-        }
-        
-        if segue.identifier == "commentSegue" {
-            let destination = segue.destinationViewController as! EnterCommentViewController
-            if let postID = sender as? String {
-                destination.postUid = postID
-            }
-        
->>>>>>> 4784ca1817225cd04a587b80c8e7e000cfb4322c
         }
     }
-    
-    // MARK: - Comment Delegate
     func commentPost(postID: String, userID: String) {
         performSegueWithIdentifier("commentSegue", sender: postID)
     }
