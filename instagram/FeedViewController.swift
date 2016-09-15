@@ -23,6 +23,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //    var delegate : CommentViewDelegate
     var sectionUser = [Post]()
     var likesArray = [Likes]()
+    var currentUsername : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         header?.usernameLabel.setTitle("\(self.sectionUser.reverse()[section].username)", forState: .Normal)
         
         let currentUid = self.sectionUser.reverse()[section].userUID
+         self.currentUsername = self.sectionUser.reverse()[section].username
         header?.currentUid = currentUid
         
         return header
@@ -86,6 +88,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        delegate!.commentSent(self, text: colorLabel.text)
         
         if indexPath.row == 0{
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
