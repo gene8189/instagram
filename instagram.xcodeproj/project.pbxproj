@@ -132,8 +132,8 @@
 				4F19B35B1D810AF20003AB18 /* AppDelegate.swift */,
 				4F9C970C1D8267D4009E2891 /* SignUpViewController */,
 				4F9C970D1D8267F6009E2891 /* Home & Camera View Controller */,
-				4F9C970E1D82680B009E2891 /* ProfileViewController */,
 				53B90C581D817A8100FBAC2D /* Feed Controller */,
+				4F9C970E1D82680B009E2891 /* ProfileViewController */,
 				4F9C97091D8267AB009E2891 /* Storyboards */,
 				4F9C970F1D826858009E2891 /* Models */,
 			);

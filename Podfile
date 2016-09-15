@@ -13,6 +13,8 @@ target 'instagram' do
   pod 'GoogleSignIn'
   pod 'FirebaseDatabase'
   pod 'Firebase/Storage'
+  pod 'SDWebImage', '~>3.8'
+  
   
 
   # Pods for instagram
