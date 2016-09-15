@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import SDWebImage
 
 
 enum ActionButtonState{
@@ -52,10 +53,6 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
         self.collectionView.dataSource = self
         self.collectionView.reloadData()
         self.usernameLabel.layer.borderWidth = 1
-        let uid = FIRAuth.auth()!.currentUser!.uid
-        DataService.usernameRef.child(uid).child("following").observeEventType(.Value, withBlock: {(followingSnapshot) in
-            print("what is this :\(followingSnapshot)")
-        })
         
         if self.userId == nil{
             loadCurrentUserImages()
@@ -65,18 +62,36 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
     }
     
     override func viewWillAppear(animated: Bool) {
-        let currentUsername = FIRAuth.auth()!.currentUser!.displayName!
-        if  self.username == nil{
-            usernameLabel.text = currentUsername
-            actionButtonState = .CurrentUser
-            
-        }else {
-            actionButtonState = .NotFollowing
-            /// write the method to set the actionbuttonstate = . not following or following
-            usernameLabel.text = username
-            print("this is segued name: \(self.username)")
-        }
+        
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        DataService.usernameRef.child(uid).child("username").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            let usernameRef = snapshot.value as! String
+            print("this is usernameRef \(usernameRef)")
+            if  self.username ==  nil {
+                self.usernameLabel.text = usernameRef
+                self.actionButtonState = .CurrentUser
+                
+            }else if self.username == usernameRef {
+                self.usernameLabel.text = usernameRef
+                self.actionButtonState = .CurrentUser
+            }else if self.username != usernameRef {
+                self.actionButtonState = .NotFollowing
+                let uid = FIRAuth.auth()!.currentUser!.uid
+                DataService.usernameRef.child(uid).child("following").observeEventType(.ChildAdded, withBlock: {(followingSnapshot) in
+                    let followingDict = followingSnapshot.key
+                    if followingDict == self.userId {
+                        self.actionButtonState = .Following
+                        
+                    }
+                    self.usernameLabel.text = self.username
+                    print("this is segued name: \(self.username)")
+                })
+            }
+        })
     }
+    
+    
+    
     
     func loadUserImages(){
         let uid = self.userId
@@ -118,10 +133,7 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
                 
                 guard let picInString = dict["profilePic"] as? String else {return}
                 let url = NSURL(string: picInString)
-                
-                let data = NSData(contentsOfURL: url!)
-                
-                self.profileImageView.image = UIImage(data: data!)
+                self.profileImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "loading"))
             }
         })
         
@@ -144,11 +156,14 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
             actionSheet.addAction(photoAction)
             self.presentViewController(actionSheet, animated: true, completion: nil)
         case .Following:
+            
             actionButtonState = .NotFollowing
-            addFollowing()
+            
             
         case . NotFollowing:
+            
             actionButtonState = .Following
+            addFollowing()
             // remove following for currentuser and user
             
             
@@ -208,11 +223,10 @@ class ProfileViewController: UIViewController ,UICollectionViewDataSource,UIColl
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ImageCellCollectionViewCell
         let dict = listOfPosts.reverse()[indexPath.row]
-        
-        
         let url = NSURL(string: dict.imageUrl)
-        let data = NSData(contentsOfURL: url!)
-        cell.collectionImageViewCell.image = UIImage(data: (data)!)
+        cell.collectionImageViewCell.sd_setImageWithURL(url, placeholderImage: UIImage(named: "loading"))
+        
+        
         
         return cell
     }

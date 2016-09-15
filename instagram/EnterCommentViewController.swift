@@ -30,7 +30,6 @@ class EnterCommentViewController: UIViewController, UITableViewDelegate, UITable
         
         startObservingDB()
         
-        
     }
     func startObservingDB (){
         
@@ -48,6 +47,7 @@ class EnterCommentViewController: UIViewController, UITableViewDelegate, UITable
                     self.listOfComments = newComments
                     print("list of comments \(self.listOfComments)")
                     print("newcomments \(newComments)")
+                    self.commentsTableView.reloadData()
                 })
             }
         })
@@ -99,7 +99,7 @@ class EnterCommentViewController: UIViewController, UITableViewDelegate, UITable
         
         commentTextField.text = ""
         
-        
+
         return true
         
     }

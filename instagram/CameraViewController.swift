@@ -75,8 +75,8 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
         let uid = FIRAuth.auth()!.currentUser!.uid
         DataService.usernameRef.child(uid).child("username").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             let usernameRef = snapshot.value as! String
-            print(usernameRef)
-            
+            print("this is usernameRef \(usernameRef)")
+        
             // sending image into storage
             let filePath = "\(uid)/\(NSDate.timeIntervalSinceReferenceDate()))"
             let data = UIImageJPEGRepresentation(postImage, 0.5)!
@@ -96,7 +96,8 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate,UI
                 DataService.usernameRef.child(uid).child("posts").updateChildValues([postRef.key : true])
             })
         })
-        
+        let tabBarController = self.presentingViewController as? HomeTabBarController
+        tabBarController!.selectedIndex  = 0
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
