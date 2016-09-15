@@ -75,10 +75,10 @@
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0jw-mT-ehp">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0jw-mT-ehp">
                                 <rect key="frame" x="20" y="383" width="360" height="197"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXC-tD-0Si">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXC-tD-0Si">
                                         <rect key="frame" x="0.0" y="0.0" width="360" height="94"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -97,7 +97,7 @@
                                             <action selector="onSelectPhotoButtonPressed:" destination="iva-BN-HDq" eventType="touchUpInside" id="weI-Q8-2pV"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MkB-vz-53z">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MkB-vz-53z">
                                         <rect key="frame" x="0.0" y="104" width="360" height="94"/>
                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                         <state key="normal" title="Take Photo">
