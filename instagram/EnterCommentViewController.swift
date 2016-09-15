@@ -10,6 +10,8 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+
+
 class EnterCommentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var commentsTableView: UITableView!
@@ -17,6 +19,7 @@ class EnterCommentViewController: UIViewController, UITableViewDelegate, UITable
     
 var listOfComments = [Comment]()
    var postUid: String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,11 +53,8 @@ var listOfComments = [Comment]()
                 
             }) {(error:NSError) in
                 print(error.description)
-                
             }
         }
-
-
 
 
     @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
@@ -93,19 +93,34 @@ var listOfComments = [Comment]()
 //        let commentRef =  DataService.postRef.child("Comments").childByAutoId() //generate auto id
 //        commentRef.updateChildValues(commentRef)
         
-        let commentRef =  DataService.rootRef.child("Comments").childByAutoId() //generate auto id
-        commentRef.setValue(commentRef)
-        
-        DataService.usernameRef.child(uid).child("Comments Sent").updateChildValues([commentRef.key: true])
-        
-        DataService.postRef.child(commentRef.key).child("Comments_Post").updateChildValues([uid: true])
-        
-        commentTextField.text = ""
-
+//        let commentRef =  DataService.rootRef.child("Comments").childByAutoId() //generate auto id
+//        commentRef.setValue(commentDict)
+//        
+//        DataService.usernameRef.child(uid).child("Comments Sent").updateChildValues([commentRef.key: true])
+//        
+//        DataService.postRef.child(commentRef.key).child("Comments_Post").updateChildValues([uid: true])
+//        
+//        commentTextField.text = ""
+//
         
         return true
         
     }
+    
+    
+    
+//    @IBAction func likeButtonPressed(sender: UIButton) {
+//        let uid = FIRAuth.auth()!.currentUser!.uid
+//        let likeRef = DataService.postRef.child(self.postUid).child("UsersWhoLiked")
+//        let userLiked = [uid : true]
+//        let photolikedRef = DataService.usernameRef.child(uid).child("PhotoLiked")
+//        let photoRef = [self.postUid : true]
+//        
+//        likeRef.updateChildValues(userLiked)
+//        photolikedRef.updateChildValues(photoRef)
+//        
+//    }
+//}
 
 
 }

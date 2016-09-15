@@ -10,10 +10,17 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+//protocol CommentViewDelegate {
+//    
+//    func commentSent(commentTextField: UITextField)
+//    
+//}
+
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
+//    var delegate : CommentViewDelegate
     var sectionUser = [Post]()
     var likesArray = [Likes]()
     
