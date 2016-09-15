@@ -43,6 +43,7 @@ class CommentTableViewCell: UITableViewCell {
         // Configure the view for the selected state
  
     }
+   
 
     @IBAction func commentButtonPressed(sender: UIButton) {
         delegate?.commentPost(postUid, userID: "")

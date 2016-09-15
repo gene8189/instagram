@@ -28,30 +28,39 @@ class EnterCommentViewController: UIViewController, UITableViewDelegate, UITable
         self.commentsTableView.delegate = self
         self.commentsTableView.dataSource = self
         
-        startObservingDB()
-        
+//        startObservingDB()
+        CommentHelper.observeCommentPost(postUid) { (comment) in
+            self.listOfComments = comment
+            self.commentsTableView.reloadData()
+        }
     }
-    func startObservingDB (){
-        
-        DataService.postRef.child(postUid).child("Comments_Post").observeEventType(.Value, withBlock: { (snapshot) in
-         var newComments = [Comment]()
-            
-            for commentSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
-                let commentKey = commentSnapshot.key
     
-                DataService.commentRef.child(commentKey).observeSingleEventOfType(.Value, withBlock: { (commentsSnapshot) in
-                    if let commentsDict = Comment(snapshot: commentsSnapshot){
-                        newComments.append(commentsDict)
-                        self.commentsTableView.reloadData()
-                    }
-                    self.listOfComments = newComments
-                    print("list of comments \(self.listOfComments)")
-                    print("newcomments \(newComments)")
-                    self.commentsTableView.reloadData()
-                })
-            }
-        })
-    }
+//    func startObservingDB (){
+//        
+//        DataService.postRef.child(postUid).child("Comments_Post").observeEventType(.Value, withBlock: { (snapshot) in
+//         var newComments = [Comment]()
+//            
+//            for commentSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+//                let commentKey = commentSnapshot.key
+//    
+//                DataService.commentRef.child(commentKey).observeSingleEventOfType(.Value, withBlock: { (commentsSnapshot) in
+//                    if let commentsDict = Comment(snapshot: commentsSnapshot){
+//                        newComments.append(commentsDict)
+//                       
+//                        // external
+//                        self.commentsTableView.reloadData()
+//                    }
+//                    
+//                    //external
+//                    self.listOfComments = newComments
+//                    print("list of comments \(self.listOfComments)")
+//                    print("newcomments \(newComments)")
+//                    // external
+//                    self.commentsTableView.reloadData()
+//                })
+//            }
+//        })
+//    }
     
     @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
         
@@ -79,6 +88,18 @@ class EnterCommentViewController: UIViewController, UITableViewDelegate, UITable
         cell.detailTextLabel?.text = comment.comment ?? "loading.."
         
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "commentSegue" {
+            let destination = segue.destinationViewController as! FeedViewController
+            if let postID = sender as? String {
+                destination.commentsArray = postID
+            }
+        }
+
+
     }
     
     func textFieldShouldReturn(commentTextField: UITextField) -> Bool{

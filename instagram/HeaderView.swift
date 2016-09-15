@@ -27,7 +27,7 @@ class HeaderView: UIView {
     }
     
     @IBAction func profileButton(sender: UIButton) {
-        
+    
         self.delegate?.profileButtonTapped(sender, userUid: currentUid)
     }
 

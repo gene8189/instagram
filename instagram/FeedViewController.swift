@@ -20,11 +20,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     
-
+    var commentsArray : String!
     var delegate : FeedViewControllerDelegate?
     var sectionUser = [Post]()
     var likesArray = [Likes]()
     var currentUsername : String!
+    var commentUsername : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.tableView.reloadData()
             }
         })
+        
     }
+    
+    
     
     @IBAction func onLogoutButtonPressed(sender: AnyObject) {try! FIRAuth.auth()!.signOut()
         NSUserDefaults.standardUserDefaults().removeObjectForKey("userUID")
@@ -74,8 +78,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let currentUid = self.sectionUser.reverse()[section].userUID
                 self.currentUsername = self.sectionUser.reverse()[section].username
                 header?.currentUid = currentUid
-                
-                
             }
         })
         return header
@@ -101,8 +103,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        //        delegate!.commentSent(self, text: colorLabel.text)
-        
         if indexPath.row == 0{
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
             let dict = self.sectionUser.reverse()[indexPath.section]
@@ -116,6 +116,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         } else{
             let commentCell = self.tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentTableViewCell
+            
             let post = self.sectionUser.reverse()[indexPath.section]
             commentCell.captionTextView.text = post.caption
             commentCell.postUid = post.puid
@@ -123,6 +124,20 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             DataService.postRef.child(post.puid).child("UsersWhoLiked").observeEventType(.Value, withBlock: {(snapshot) in
                 let numLikes = snapshot.childrenCount
                 commentCell.likeLabel.text = "\(numLikes)"
+            })
+            
+            CommentHelper.observeCommentPost(post.puid, completion: { (comments) in
+                
+                let firstUid = comments[0].userUID
+               
+                DataService.usernameRef.child(firstUid!).child("username").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                    let username = snapshot.value as! String
+                    self.commentUsername = username
+                })
+
+                let firstComment = comments[0].comment
+                
+                commentCell.commentsTextView.text = "\(self.commentUsername):      \(firstComment)"
             })
             return commentCell
         }
@@ -175,6 +190,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func commentPost(postID: String, userID: String) {
         performSegueWithIdentifier("commentSegue", sender: postID)
     }
+    
 }
 
 

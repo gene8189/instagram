@@ -137,17 +137,18 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Username 2 : wow, nice pic" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rIp-r6-0rq">
-                                                    <rect key="frame" x="10" y="107" width="380" height="103.5"/>
+                                                    <rect key="frame" x="10" y="127" width="380" height="83.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comments:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vf5-IX-SuS">
-                                                    <rect key="frame" x="15" y="93" width="58" height="14"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b14-fI-oW5">
+                                                    <rect key="frame" x="15" y="93" width="58" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <state key="normal" title="comments:">
+                                                        <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="c0u-m3-6dt" firstAttribute="leading" secondItem="TKO-By-S6a" secondAttribute="leading" constant="10" id="0g4-qV-cLw"/>
@@ -158,32 +159,30 @@
                                                 <constraint firstAttribute="trailing" secondItem="c0u-m3-6dt" secondAttribute="trailing" constant="2" id="BVL-R9-dIl"/>
                                                 <constraint firstItem="rIp-r6-0rq" firstAttribute="leading" secondItem="TKO-By-S6a" secondAttribute="leading" constant="10" id="FJD-XN-NQO"/>
                                                 <constraint firstItem="rIp-r6-0rq" firstAttribute="top" secondItem="c0u-m3-6dt" secondAttribute="bottom" id="LOB-8X-tcn"/>
-                                                <constraint firstItem="Vf5-IX-SuS" firstAttribute="leading" secondItem="TKO-By-S6a" secondAttribute="leading" constant="15" id="PBR-dw-7m1"/>
-                                                <constraint firstItem="c0u-m3-6dt" firstAttribute="top" secondItem="Vf5-IX-SuS" secondAttribute="bottom" id="Qy9-VH-rG2"/>
-                                                <constraint firstItem="Vf5-IX-SuS" firstAttribute="top" secondItem="rlT-ux-tZU" secondAttribute="bottom" constant="2" id="Ua1-Yh-Bvt"/>
+                                                <constraint firstAttribute="bottom" secondItem="b14-fI-oW5" secondAttribute="bottom" id="SZm-Ey-yzf"/>
                                                 <constraint firstAttribute="trailing" secondItem="rIp-r6-0rq" secondAttribute="trailing" constant="10" id="WUc-r6-OEK"/>
-                                                <constraint firstItem="Vf5-IX-SuS" firstAttribute="top" secondItem="RGt-1v-152" secondAttribute="bottom" constant="5" id="XV4-oq-cSu"/>
                                                 <constraint firstItem="rlT-ux-tZU" firstAttribute="top" secondItem="RGt-1v-152" secondAttribute="bottom" id="Xc4-bj-7Kh"/>
                                                 <constraint firstItem="c0u-m3-6dt" firstAttribute="top" secondItem="rlT-ux-tZU" secondAttribute="bottom" id="Y1p-VL-eL3"/>
+                                                <constraint firstItem="b14-fI-oW5" firstAttribute="leading" secondItem="TKO-By-S6a" secondAttribute="leading" constant="15" id="ZUX-6n-UbK"/>
+                                                <constraint firstAttribute="bottom" secondItem="b14-fI-oW5" secondAttribute="bottom" id="aZ8-y9-0gR"/>
+                                                <constraint firstItem="rIp-r6-0rq" firstAttribute="top" secondItem="b14-fI-oW5" secondAttribute="bottom" constant="8" id="aqx-Ch-FV0"/>
                                                 <constraint firstItem="RGt-1v-152" firstAttribute="leading" secondItem="TKO-By-S6a" secondAttribute="leading" constant="10" id="dQJ-dC-HHc"/>
-                                                <constraint firstItem="rIp-r6-0rq" firstAttribute="top" secondItem="Vf5-IX-SuS" secondAttribute="bottom" id="f9X-Oh-cGJ"/>
-                                                <constraint firstItem="rIp-r6-0rq" firstAttribute="top" secondItem="Vf5-IX-SuS" secondAttribute="bottom" id="i3c-BH-i3w"/>
+                                                <constraint firstItem="b14-fI-oW5" firstAttribute="top" secondItem="TKO-By-S6a" secondAttribute="top" id="eND-HP-Z4k"/>
                                                 <constraint firstItem="RGt-1v-152" firstAttribute="top" secondItem="TKO-By-S6a" secondAttribute="topMargin" id="iC0-Ti-mgk"/>
-                                                <constraint firstItem="Vf5-IX-SuS" firstAttribute="top" secondItem="c0u-m3-6dt" secondAttribute="bottom" id="kS2-Cs-G52"/>
                                                 <constraint firstItem="RGt-1v-152" firstAttribute="leading" secondItem="TKO-By-S6a" secondAttribute="leadingMargin" constant="10" id="m0K-kR-Dbf"/>
+                                                <constraint firstItem="b14-fI-oW5" firstAttribute="top" secondItem="c0u-m3-6dt" secondAttribute="bottom" id="nxr-9u-hFu"/>
                                                 <constraint firstAttribute="bottom" secondItem="c0u-m3-6dt" secondAttribute="bottom" constant="2" id="qHj-Kn-0jg"/>
                                                 <constraint firstItem="qzc-qs-sbK" firstAttribute="top" secondItem="RGt-1v-152" secondAttribute="bottom" constant="5" id="vFb-6k-ASV"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="m0K-kR-Dbf"/>
-                                                    <exclude reference="Qy9-VH-rG2"/>
                                                     <exclude reference="Y1p-VL-eL3"/>
                                                     <exclude reference="qHj-Kn-0jg"/>
-                                                    <exclude reference="Ua1-Yh-Bvt"/>
-                                                    <exclude reference="XV4-oq-cSu"/>
+                                                    <exclude reference="SZm-Ey-yzf"/>
+                                                    <exclude reference="aZ8-y9-0gR"/>
+                                                    <exclude reference="eND-HP-Z4k"/>
                                                     <exclude reference="LOB-8X-tcn"/>
-                                                    <exclude reference="f9X-Oh-cGJ"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -220,7 +219,6 @@
                     <connections>
                         <outlet property="tableView" destination="gHm-Nb-dd3" id="oQN-9b-j4T"/>
                         <segue destination="f3A-0x-86O" kind="show" identifier="profileSegue" id="ItR-pl-j6m"/>
-                        <segue destination="MBw-uI-OhH" kind="presentation" identifier="commentSegue" id="FGE-h0-2vK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjM-Eg-3hK" userLabel="First Responder" sceneMemberID="firstResponder"/>
