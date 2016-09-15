@@ -220,7 +220,7 @@
                     <connections>
                         <outlet property="tableView" destination="gHm-Nb-dd3" id="oQN-9b-j4T"/>
                         <segue destination="f3A-0x-86O" kind="show" identifier="profileSegue" id="ItR-pl-j6m"/>
-                        <segue destination="MBw-uI-OhH" kind="presentation" identifier="commentSegue" id="FGE-h0-2vK"/>
+                        <segue destination="MBw-uI-OhH" kind="presentation" identifier="commentSegue" id="EeJ-a3-B1E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjM-Eg-3hK" userLabel="First Responder" sceneMemberID="firstResponder"/>
