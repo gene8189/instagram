@@ -27,6 +27,7 @@ class EnterCommentViewController: UIViewController, UITableViewDelegate, UITable
         
         self.commentsTableView.delegate = self
         self.commentsTableView.dataSource = self
+        print(self.postUid)
         
         startObservingDB()
         
@@ -48,6 +49,7 @@ class EnterCommentViewController: UIViewController, UITableViewDelegate, UITable
                     self.listOfComments = newComments
                     print("list of comments \(self.listOfComments)")
                     print("newcomments \(newComments)")
+                    self.commentsTableView.reloadData()
                 })
             }
         })

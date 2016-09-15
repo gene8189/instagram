@@ -71,7 +71,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 guard let picInString = dict["profilePic"] as? String else {return}
                 let url = NSURL(string: picInString)
                 header?.profileImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "loading"))
+                
                 let currentUid = self.sectionUser.reverse()[section].userUID
+                
                 self.currentUsername = self.sectionUser.reverse()[section].username
                 header?.currentUid = currentUid
                 
@@ -162,9 +164,17 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if let userUid = sender as? String{
                 destination.userId = userUid
                 destination.username = self.currentUsername
+}
+}
+
+        if segue.identifier == "commentSegue"{
+                let destination = segue.destinationViewController as! EnterCommentViewController
+                if let postID = sender as? String {
+                    destination.postUid = postID
+                }
             }
         }
-    }
+    
     func commentPost(postID: String, userID: String) {
         performSegueWithIdentifier("commentSegue", sender: postID)
     }
