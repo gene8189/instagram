@@ -10,10 +10,17 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+//protocol CommentViewDelegate {
+//    
+//    func commentSent(commentTextField: UITextField)
+//    
+//}
+
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
+//    var delegate : CommentViewDelegate
     var sectionUser = [Post]()
     var likesArray = [Likes]()
     var currentUsername : String!
@@ -82,6 +89,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+//        delegate!.commentSent(self, text: colorLabel.text)
+        
         if indexPath.row == 0{
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("pictureCell", forIndexPath: indexPath) as! PictureCellTableViewCell
             let dict = self.sectionUser.reverse()[indexPath.section]
@@ -124,12 +133,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "profileSegue"{
             let destination = segue.destinationViewController as! ProfileViewController
-        if let userUid = sender as? String{
-            destination.userId = userUid
-            }
+            if let userUid = sender as? String{
+                destination.userId = userUid
+                destination.username = self.currentUsername
         }
+        
     }
 }
 

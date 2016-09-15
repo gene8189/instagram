@@ -136,6 +136,7 @@
                     <size key="freeformSize" width="400" height="600"/>
                     <connections>
                         <outlet property="emailTextField" destination="7cM-LK-o1f" id="QUS-Tb-jeO"/>
+                        <outlet property="fbLoginButton" destination="9Z5-BO-UOo" id="jcl-Z9-kC9"/>
                         <outlet property="passwordTextField" destination="vgn-Sl-36J" id="MdQ-ls-Fem"/>
                         <outlet property="usernameTextField" destination="WZM-PI-ZYg" id="jle-u9-kHG"/>
                         <segue destination="a4y-Qt-PC6" kind="presentation" identifier="HomeSegue" id="v3q-Xe-deb"/>
@@ -267,6 +268,6 @@
         <image name="backgroundPhoto" width="1125" height="2001"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qWF-Pf-3Ol"/>
+        <segue reference="v3q-Xe-deb"/>
     </inferredMetricsTieBreakers>
 </document>
