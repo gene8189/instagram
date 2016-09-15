@@ -10,14 +10,22 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+@objc protocol CommentDelegate {
+//    func likes()
+    func commentPost(postID: String, userID: String)
+}
+
 class CommentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var comment: UIButton!
     @IBOutlet weak var like: UIButton!
     @IBOutlet weak var share: UIButton!
+    
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var commentsTextView: UITextView!
     @IBOutlet weak var likeLabel: UILabel!
+    
+    weak var delegate : CommentDelegate?
     
     var likesArray = [Likes]()
     var postUid: String!
@@ -36,7 +44,10 @@ class CommentTableViewCell: UITableViewCell {
  
     }
 
-        
+    @IBAction func commentButtonPressed(sender: UIButton) {
+        delegate?.commentPost(postUid, userID: "")
+    }
+    
     @IBAction func likeButtonPressed(sender: UIButton) {
         let uid = FIRAuth.auth()!.currentUser!.uid
         let likeRef = DataService.postRef.child(self.postUid).child("UsersWhoLiked")

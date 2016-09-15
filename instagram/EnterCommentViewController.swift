@@ -13,12 +13,13 @@ import FirebaseDatabase
 
 
 class EnterCommentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var commentTextField: UITextField!
     
-var listOfComments = [Comment]()
-   var postUid: String!
+    var listOfComments = [Comment]()
+    
+    var postUid: String!
     
     
     override func viewDidLoad() {
@@ -29,42 +30,37 @@ var listOfComments = [Comment]()
         
         startObservingDB()
         
-//        let uid = FIRAuth.auth()!.currentUser!.uid
-//        let currentID = DataServices.tweetRef.child(User.currentUserUid)
-//        print(currentID)
+        
     }
-        func startObservingDB (){
-//            DataService.postRef.child(postUid).observeEventType(.Value, withBlock: { (snapshot) in
-            DataService.commentRef.observeEventType(.Value, withBlock: { (snapshot : FIRDataSnapshot) in
-                var newComments = [Comment]()
-                
-                for comment in snapshot.children {
-                    if let commentObject = Comment(snapshot: comment as! FIRDataSnapshot),
-                        let userUID = commentObject.userUID{
-                        newComments.append(commentObject)
-                        // going to firebase to get the username
-                        DataService.usernameRef.child(userUID).child("username").observeSingleEventOfType(.Value, withBlock: { (userSnapshot) in
-                            commentObject.username = userSnapshot.value as? String
-                            self.commentsTableView.reloadData()
-                        })
+    func startObservingDB (){
+        
+        DataService.postRef.child(postUid).child("Comments_Post").observeEventType(.Value, withBlock: { (snapshot) in
+         var newComments = [Comment]()
+            
+            for commentSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                let commentKey = commentSnapshot.key
+    
+                DataService.commentRef.child(commentKey).observeSingleEventOfType(.Value, withBlock: { (commentsSnapshot) in
+                    if let commentsDict = Comment(snapshot: commentsSnapshot){
+                        newComments.append(commentsDict)
+                        self.commentsTableView.reloadData()
                     }
-                }
-                self.listOfComments = newComments
-                
-            }) {(error:NSError) in
-                print(error.description)
+                    self.listOfComments = newComments
+                    print("list of comments \(self.listOfComments)")
+                    print("newcomments \(newComments)")
+                })
             }
-        }
-
-
+        })
+    }
+    
     @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
-///TABLE VIEW METHODS///
-
+    ///TABLE VIEW METHODS///
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.listOfComments.count
     }
@@ -72,14 +68,19 @@ var listOfComments = [Comment]()
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = self.commentsTableView.dequeueReusableCellWithIdentifier("commentsCell")!
-        let comment = listOfComments.reverse()[indexPath.row]
+        let comment = self.listOfComments[indexPath.row]
+        let userID = self.listOfComments[indexPath.row].userUID
         
-        cell.textLabel?.text = comment.username
-        cell.detailTextLabel?.text = comment.comment
+        DataService.usernameRef.child(userID!).child("username").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            let username = snapshot.value as! String
+            cell.textLabel?.text = username ?? "loading.."
+        })
+        
+        cell.detailTextLabel?.text = comment.comment ?? "loading.."
         
         return cell
     }
-
+    
     func textFieldShouldReturn(commentTextField: UITextField) -> Bool{
         
         guard let commentText = commentTextField.text else { return true }
@@ -87,40 +88,19 @@ var listOfComments = [Comment]()
         let uid = FIRAuth.auth()!.currentUser!.uid
         
         let commentDict = ["comment": commentText,
-                         "created_at" : NSDate().timeIntervalSince1970,
-                         "userUID" : uid]
+                           "created_at" : NSDate().timeIntervalSince1970,
+                           "userUID" : uid]
         
-//        let commentRef =  DataService.postRef.child("Comments").childByAutoId() //generate auto id
-//        commentRef.updateChildValues(commentRef)
+        let commentRef =  DataService.rootRef.child("Comments").childByAutoId() //generate auto id
+        commentRef.setValue(commentDict)
         
-//        let commentRef =  DataService.rootRef.child("Comments").childByAutoId() //generate auto id
-//        commentRef.setValue(commentDict)
-//        
-//        DataService.usernameRef.child(uid).child("Comments Sent").updateChildValues([commentRef.key: true])
-//        
-//        DataService.postRef.child(commentRef.key).child("Comments_Post").updateChildValues([uid: true])
-//        
-//        commentTextField.text = ""
-//
+        DataService.usernameRef.child(uid).child("Comments Sent").updateChildValues([commentRef.key: true])
+        DataService.postRef.child(self.postUid).child("Comments_Post").updateChildValues([commentRef.key: true])
+        
+        commentTextField.text = ""
+        
         
         return true
         
     }
-    
-    
-    
-//    @IBAction func likeButtonPressed(sender: UIButton) {
-//        let uid = FIRAuth.auth()!.currentUser!.uid
-//        let likeRef = DataService.postRef.child(self.postUid).child("UsersWhoLiked")
-//        let userLiked = [uid : true]
-//        let photolikedRef = DataService.usernameRef.child(uid).child("PhotoLiked")
-//        let photoRef = [self.postUid : true]
-//        
-//        likeRef.updateChildValues(userLiked)
-//        photolikedRef.updateChildValues(photoRef)
-//        
-//    }
-//}
-
-
 }

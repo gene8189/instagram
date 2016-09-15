@@ -15,11 +15,10 @@ class Comment {
     var comment: String
     var createdAt: Double
     var userUID: String?
-    var username: String?
     
     init?(snapshot: FIRDataSnapshot){
         
-        guard let dict = snapshot.value as? [String: AnyObject] else {return nil}
+        guard let dict = snapshot.value as? [String: AnyObject] else { return nil }
         
         puid = snapshot.key
         

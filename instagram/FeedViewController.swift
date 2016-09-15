@@ -10,17 +10,16 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-//protocol CommentViewDelegate {
-//    
-//    func commentSent(commentTextField: UITextField)
-//    
-//}
+protocol FeedViewControllerDelegate {
+    func feedViewControllerDelegate(controller: FeedViewController, didPassUid sender: String)
+    
+}
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate{
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderViewDelegate, CommentDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
-//    var delegate : CommentViewDelegate
+    var delegate : FeedViewControllerDelegate?
     var sectionUser = [Post]()
     var likesArray = [Likes]()
     var currentUsername : String!
@@ -46,6 +45,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let viewController = storyboard.instantiateViewControllerWithIdentifier("SignUpViewController")
         self.presentViewController(viewController, animated: true, completion: nil)
+        
         
     }
     
@@ -105,6 +105,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let post = self.sectionUser.reverse()[indexPath.section]
             commentCell.captionTextView.text = post.caption
             commentCell.postUid = post.puid
+            commentCell.delegate = self
+//            self.delegate?.feedViewControllerDelegate(self, didPassUid: post.puid)
+            print("this is post: \(commentCell.postUid)")
+            
             
             ///Bug Here///
             DataService.postRef.child(post.puid).child("UsersWhoLiked").observeSingleEventOfType(.Value, withBlock: {(snapshot) in
@@ -133,12 +137,29 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "profileSegue"{
             let destination = segue.destinationViewController as! ProfileViewController
             if let userUid = sender as? String{
                 destination.userId = userUid
                 destination.username = self.currentUsername
+            }
+        }
+        
+        if segue.identifier == "commentSegue" {
+            let destination = segue.destinationViewController as! EnterCommentViewController
+            if let postID = sender as? String {
+                destination.postUid = postID
+            }
+        
         }
         
     }
+    
+    // MARK: - Comment Delegate
+    func commentPost(postID: String, userID: String) {
+        performSegueWithIdentifier("commentSegue", sender: postID)
+    }
 }
+
 
